@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from numba import jit
 import numpy as np
 
 from scipy.special import binom
@@ -50,16 +51,13 @@ def sample_franke_function(N, noise):
     return X, Y
 
 
+@jit(nopython=True)
 def design_matrix(data, degree):
     """Compare to sklearns' PolynomialFeatures."""
     monoms = []
     for n in range(degree + 1):
         for k in range(n + 1):
             monoms.append((n - k, k))
-
-    # The number of monoms (or features) is equal to:
-    # nCr(degree + 2, degree) or (degree + 1) * (degree + 2) / 2
-    assert len(monoms) == binom(degree + 2, degree)
 
     x, y = data.T
     X = np.zeros((x.shape[0], len(monoms)))
