@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from utils import sample_franke_function
 from utils import design_matrix
 from utils import bias_variance_analysis
-from utils import LinearRegression
+from utils import OLS
 
 np.random.seed(2021)
 
@@ -33,7 +33,7 @@ for degree in range(1, MAX_DEGREE + 1):
     X_train_ = design_matrix(X_train, degree=degree)
     X_test_ = design_matrix(X_test, degree=degree)
 
-    model = LinearRegression().fit(X_train_, Y_train)
+    model = OLS().fit(X_train_, Y_train)
     model.score(X_test_, Y_test)
 
     train_mse.append(model.mse_train)

@@ -4,7 +4,7 @@ import numpy as np
 
 from scipy.special import binom
 from scipy.stats import norm
-from sklearn.linear_model import Lasso
+from sklearn.linear_model import Lasso as Lasso_
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error as mse
 from sklearn.metrics import r2_score as r2
@@ -71,6 +71,19 @@ class LinearRegression():
     def __init__(self):
         pass
 
+    def predict(self, X):
+        return X @ self.beta
+
+    def score(self, X, y):
+        self.mse_test = mse(y, self.predict(X))
+        self.r2_test = r2(y, self.predict(X))
+        return self.mse_test
+
+
+class OLS(LinearRegression):
+    def __init__(self):
+        pass
+
     def fit(self, X, y, confidence=None):
         self.beta = np.linalg.solve(X.T @ X, X.T @ y)
         self.mse_train = mse(y, self.predict(X))
@@ -85,16 +98,8 @@ class LinearRegression():
 
         return self
     
-    def predict(self, X):
-        return X @ self.beta
-    
-    def score(self, X, y):
-        self.mse_test = mse(y, self.predict(X))
-        self.r2_test = r2(y, self.predict(X))
-        return self.mse_test
 
-
-class RidgeRegression():
+class Ridge(LinearRegression):
     def __init__(self, reg_param):
         self.reg_param = reg_param
     
@@ -107,41 +112,19 @@ class RidgeRegression():
         self.mse_train = mse(y, self.predict(X))
         self.r2_train = r2(y, self.predict(X))
         return self
-    
-    def predict(self, X):
-        return X @ self.beta
-
-    def score(self, X, y):
-        self.mse_test = mse(y, self.predict(X))
-        self.r2_test = r2(y, self.predict(X))
-        return self.mse_test
 
 
-class LassoRegression():
+class Lasso(LinearRegression):
     def __init__(self, reg_param):
         self.reg_param = reg_param
-        self.model = Lasso(alpha=self.reg_param)
+        self.model = Lasso_(alpha=self.reg_param)
     
     def fit(self, X, y):
         self.model.fit(X, y)
-        # self.beta = np.concatenate(
-        #     (
-        #     self.model.intercept_,
-        #     self.model.coef_,
-        #     )
-        # )
         self.beta = self.model.coef_
         self.mse_train = mse(y, self.model.predict(X))
         self.r2_train = r2(y, self.model.predict(X))
         return self
-    
-    def predict(self, X):
-        return self.model.predict(X)
-
-    def score(self, X, y):
-        self.mse_test = mse(y, self.model.predict(X))
-        self.r2_test = r2(y, self.model.predict(X))
-        return self.mse_test
 
 
 def bias_variance_analysis(model, X_train, X_test, y_train, y_test, n_bootstraps):

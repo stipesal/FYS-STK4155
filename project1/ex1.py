@@ -11,7 +11,7 @@ from utils import franke_function
 from utils import sample_franke_function
 from utils import plot_franke_function
 from utils import design_matrix
-from utils import LinearRegression
+from utils import OLS
 
 np.random.seed(2021)
 
@@ -43,7 +43,7 @@ if SHOW_PLOTS:
 X_train_ = design_matrix(X_train, degree=DEGREE)
 X_test_ = design_matrix(X_test, degree=DEGREE)
 
-model = LinearRegression().fit(X_train_, Y_train, confidence=.95)
+model = OLS().fit(X_train_, Y_train, confidence=.95)
 
 
 # PLOT. Prediction. 2D & 3D.

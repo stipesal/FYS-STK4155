@@ -10,7 +10,7 @@ from utils import sample_franke_function
 from utils import design_matrix
 from utils import bootstrap
 from utils import cross_validation
-from utils import LinearRegression
+from utils import OLS
 
 np.random.seed(2021)
 
@@ -32,7 +32,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=TEST_SIZE)
 boot = np.zeros((MAX_DEGREE, 2))
 cv = np.zeros((MAX_DEGREE, 2))
 
-model = LinearRegression()
+model = OLS()
 for i, deg in enumerate(range(1, MAX_DEGREE + 1)):
     X_train_ = design_matrix(X_train, degree=deg)
     X_test_ = design_matrix(X_test, degree=deg)
