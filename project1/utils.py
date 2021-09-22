@@ -37,7 +37,7 @@ def plot_3d():
     return ax
 
 
-def sample_franke_function(N, noise=0.):
+def sample_franke_function(N, noise):
     """
     Samples `N` uniform data points in the unit square `[0,1)^2`,
     as well as the corresponding evaluation in Franke's function.
@@ -46,7 +46,6 @@ def sample_franke_function(N, noise=0.):
     x, y = X.T
 
     Y = franke_function(x, y)
-    noise = .1
     Y += noise * np.random.randn(N)
     return X, Y
 

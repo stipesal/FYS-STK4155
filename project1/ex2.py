@@ -14,7 +14,7 @@ from utils import LinearRegression
 np.random.seed(2021)
 
 SHOW_PLOTS = True
-NOISE = .2
+NOISE = .1
 TEST_SIZE = .2
 MAX_DEGREE = 10
 N_BOOTSTRAP = 50
