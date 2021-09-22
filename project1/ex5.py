@@ -26,8 +26,8 @@ LMBD = 1E-5
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 500
-X, Y = sample_franke_function(N, noise=NOISE)
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=TEST_SIZE)
+x, y = sample_franke_function(N, noise=NOISE)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
 # LOSS. Model complexity.
@@ -36,14 +36,14 @@ test_mse = []
 train_mse_lasso = []
 test_mse_lasso = []
 for degree in range(1, MAX_DEGREE + 1):
-    X_train_ = design_matrix(X_train, degree=degree)
-    X_test_ = design_matrix(X_test, degree=degree)
+    X_train = design_matrix(x_train, degree=degree)
+    X_test = design_matrix(x_test, degree=degree)
 
-    ols = OLS().fit(X_train_, Y_train)
-    lasso = Lasso(reg_param=LMBD).fit(X_train_, Y_train)
+    ols = OLS().fit(X_train, y_train)
+    lasso = Lasso(reg_param=LMBD).fit(X_train, y_train)
 
-    bootstrap(ols, X_train_, Y_train, N_BOOTSTRAP)
-    bootstrap(lasso, X_train_, Y_train, N_BOOTSTRAP)
+    bootstrap(ols, X_train, y_train, N_BOOTSTRAP)
+    bootstrap(lasso, X_train, y_train, N_BOOTSTRAP)
 
     train_mse.append(np.mean(ols.boot["Train MSE"]))
     test_mse.append(np.mean(ols.boot["Test MSE"]))
@@ -68,22 +68,22 @@ if SHOW_PLOTS:
 DEGREE = 8
 lambdas = np.logspace(-5, 3, 100)
 
-X, Y = sample_franke_function(N, noise=NOISE)
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=TEST_SIZE)
+x, y = sample_franke_function(N, noise=NOISE)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
-X_train_ = design_matrix(X_train, degree=DEGREE)
-X_test_ = design_matrix(X_test, degree=DEGREE)
+X_train = design_matrix(x_train, degree=DEGREE)
+X_test = design_matrix(x_test, degree=DEGREE)
 
 error = np.zeros((lambdas.size, 3))
 for i, lmbd in enumerate(lambdas):
     model = Lasso(reg_param=lmbd)
     error[i] = bias_variance_analysis(
-        model, X_train_, X_test_, Y_train, Y_test, N_BOOTSTRAP
+        model, X_train, X_test, y_train, y_test, N_BOOTSTRAP
     )
 
 ols = OLS()
 e, b, v = bias_variance_analysis(
-    ols, X_train_, X_test_, Y_train, Y_test, N_BOOTSTRAP
+    ols, X_train, X_test, y_train, y_test, N_BOOTSTRAP
 )
 
 if SHOW_PLOTS:
@@ -104,13 +104,13 @@ if SHOW_PLOTS:
 # Regression coefficients. OLS vs. RIDGE vs. LASSO.
 lambdas = np.logspace(-5, 4, 100)
 
-X_train_ = design_matrix(X_train, degree=2)
-ols = OLS().fit(X_train_, Y_train)
+X_train = design_matrix(X_train, degree=2)
+ols = OLS().fit(X_train, x_train)
 
-betas = np.zeros((2, lambdas.size, X_train_.shape[1]))
+betas = np.zeros((2, lambdas.size, X_train.shape[1]))
 for i, lmbd in enumerate(lambdas):
-    ridge = Ridge(reg_param=lmbd).fit(X_train_, Y_train)
-    lasso = Lasso(reg_param=lmbd).fit(X_train_, Y_train)
+    ridge = Ridge(reg_param=lmbd).fit(X_train, y_train)
+    lasso = Lasso(reg_param=lmbd).fit(X_train, y_train)
     betas[0][i] = ridge.beta
     betas[1][i] = lasso.beta
 

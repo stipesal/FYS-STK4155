@@ -22,19 +22,19 @@ N_BOOTSTRAP = 50
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 400
-X, Y = sample_franke_function(N, noise=NOISE)
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=TEST_SIZE)
+x, y = sample_franke_function(N, noise=NOISE)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
 # LOSS. Model complexity.
 train_mse = []
 test_mse = []
 for degree in range(1, MAX_DEGREE + 1):
-    X_train_ = design_matrix(X_train, degree=degree)
-    X_test_ = design_matrix(X_test, degree=degree)
+    X_train = design_matrix(x_train, degree=degree)
+    X_test = design_matrix(x_test, degree=degree)
 
-    model = OLS().fit(X_train_, Y_train)
-    model.score(X_test_, Y_test)
+    model = OLS().fit(X_train, y_train)
+    model.score(X_test, y_test)
 
     train_mse.append(model.mse_train)
     test_mse.append(model.mse_test)
@@ -55,11 +55,11 @@ if SHOW_PLOTS:
 err, bias, var = np.zeros((3, MAX_DEGREE))
 
 for i, deg in enumerate(range(1, MAX_DEGREE + 1)):
-    X_train_ = design_matrix(X_train, degree=deg)
-    X_test_ = design_matrix(X_test, degree=deg)
+    X_train = design_matrix(x_train, degree=deg)
+    X_test = design_matrix(x_test, degree=deg)
 
     err[i], bias[i], var[i] = bias_variance_analysis(
-        model, X_train_, X_test_, Y_train, Y_test, N_BOOTSTRAP
+        model, X_train, X_test, y_train, y_test, N_BOOTSTRAP
     )
 
 if SHOW_PLOTS:
@@ -79,14 +79,14 @@ sample_sizes = np.logspace(2, 3, 200).astype(int)
 error = np.zeros((len(sample_sizes), 3))
 
 for i, N in enumerate(sample_sizes):
-    X, Y = sample_franke_function(N, noise=NOISE)
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=TEST_SIZE)
+    x, y = sample_franke_function(N, noise=NOISE)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
-    X_train_ = design_matrix(X_train, degree=degree)
-    X_test_ = design_matrix(X_test, degree=degree)
+    X_train = design_matrix(x_train, degree=degree)
+    X_test = design_matrix(x_test, degree=degree)
 
     error[i] = bias_variance_analysis(
-        model, X_train_, X_test_, Y_train, Y_test, N_BOOTSTRAP
+        model, X_train, X_test, y_train, y_test, N_BOOTSTRAP
     )
 
 if SHOW_PLOTS:

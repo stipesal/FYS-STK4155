@@ -24,8 +24,8 @@ K_FOLD = 5
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 1000
-X, Y = sample_franke_function(N, noise=NOISE)
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=TEST_SIZE)
+x, y = sample_franke_function(N, noise=NOISE)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
 # BOOTSTRAP VS. CROSS-VALIDATION.
@@ -34,11 +34,11 @@ cv = np.zeros((MAX_DEGREE, 2))
 
 model = OLS()
 for i, deg in enumerate(range(1, MAX_DEGREE + 1)):
-    X_train_ = design_matrix(X_train, degree=deg)
-    X_test_ = design_matrix(X_test, degree=deg)
+    X_train = design_matrix(x_train, degree=deg)
+    X_test = design_matrix(x_test, degree=deg)
 
-    bootstrap(model, X_train_, Y_train, N_BOOTSTRAP)
-    cross_validation(model, X_train_, Y_train, K_FOLD)
+    bootstrap(model, X_train, y_train, N_BOOTSTRAP)
+    cross_validation(model, X_train, y_train, K_FOLD)
 
     boot[i] = np.mean(model.boot["Train MSE"]), np.mean(model.boot["Test MSE"])
     cv[i] = np.mean(model.cv["Train MSE"]), np.mean(model.cv["Test MSE"])
