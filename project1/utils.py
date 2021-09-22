@@ -126,6 +126,9 @@ class Lasso(LinearRegression):
         self.r2_train = r2(y, self.model.predict(X))
         return self
 
+    def predict(self, X):
+        return self.model.predict(X)
+
 
 def bias_variance_analysis(model, X_train, X_test, y_train, y_test, n_bootstraps):
     y_pred = np.zeros((n_bootstraps, y_test.shape[0]))
