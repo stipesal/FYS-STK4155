@@ -147,14 +147,16 @@ def bootstrap(model, X, y, n_bootstraps):
     model.boot = {
         "Train MSE": [],
         "Test MSE": [],
+        "beta": np.zeros((n_bootstraps, X_train.shape[1])),
     }
-    for _ in range(n_bootstraps):
+    for i in range(n_bootstraps):
         x_, y_ = resample(X_train, Y_train)
         model.fit(x_, y_)
         model.score(X_test, Y_test)
 
         model.boot["Train MSE"].append(model.mse_train)
         model.boot["Test MSE"].append(model.mse_test)
+        model.boot["beta"][i] = model.beta
 
 
 def cross_validation(model, X, y, n_folds):
