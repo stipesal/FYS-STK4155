@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.stats import norm
+from scipy.stats import t
 from sklearn.linear_model import Lasso as Lasso_
 from sklearn.metrics import mean_squared_error as mse
 from sklearn.metrics import r2_score as r2
@@ -28,10 +28,10 @@ class OLS(LinearRegression):
         self.r2_train = r2(y, self.predict(X))
 
         if confidence is not None:
+            sigma = ((X @ self.beta - y) ** 2).sum() / (y.size - 2)
             X_ = np.linalg.inv(X.T @ X)
-            sigma = np.std(X @ self.beta, ddof=1)
-            q = norm.ppf(confidence)
-            dev = sigma * np.sqrt(np.diag(X_))
+            q = t.ppf(1 - (1 - confidence) / 2, y.size - 2)
+            dev = np.sqrt(sigma * np.diag(X_))
             self.CI = np.array([self.beta - q * dev, self.beta + q * dev]).T
 
         return self
