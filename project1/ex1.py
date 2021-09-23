@@ -7,11 +7,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 from linear_regression import OLS
-from utils import plot_3d
-from utils import franke_function
-from utils import sample_franke_function
-from utils import plot_franke_function
-from utils import design_matrix
+from franke import franke_function, sample_franke, plot_franke
+from utils import plot_3d, design_matrix
 
 np.random.seed(2021)
 
@@ -23,14 +20,14 @@ DEGREE = 5
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 200
-x, y = sample_franke_function(N, noise=NOISE)
+x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
 # PLOT. Train & test data.
 if SHOW_PLOTS:
     ax = plot_3d()
-    plot_franke_function(ax)
+    plot_franke(ax)
     ax.scatter3D(*x_train.T, y_train, label="Train data")
     ax.scatter3D(*x_test.T, y_test, label="Test data")
     ax.set_title("Sampling Franke's function.")
@@ -63,7 +60,7 @@ if SHOW_PLOTS:
     plt.show()
     # 3D.
     ax = plot_3d()
-    plot_franke_function(ax)
+    plot_franke(ax)
     ax.scatter3D(*x_test.T, model.predict(X_test), c="red")
     ax.plot_wireframe(
         x, y, (model.predict(mgrid)).reshape(n, n),

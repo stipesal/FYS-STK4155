@@ -8,10 +8,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 from linear_regression import OLS, Ridge, Lasso
-from utils import sample_franke_function
-from utils import design_matrix
-from utils import bootstrap
-from utils import bias_variance_analysis
+from franke import sample_franke
+from utils import design_matrix, bootstrap, bias_variance_analysis
 
 warnings.filterwarnings("ignore")
 np.random.seed(2021)
@@ -26,7 +24,7 @@ LMBD = 1E-5
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 500
-x, y = sample_franke_function(N, noise=NOISE)
+x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
@@ -68,7 +66,7 @@ if SHOW_PLOTS:
 DEGREE = 8
 lambdas = np.logspace(-5, 3, 100)
 
-x, y = sample_franke_function(N, noise=NOISE)
+x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 X_train = design_matrix(x_train, degree=DEGREE)
@@ -104,7 +102,7 @@ if SHOW_PLOTS:
 # Regression coefficients. OLS vs. RIDGE vs. LASSO.
 lambdas = np.logspace(-5, 4, 100)
 
-X_train = design_matrix(X_train, degree=2)
+X_train = design_matrix(x_train, degree=2)
 ols = OLS().fit(X_train, x_train)
 
 betas = np.zeros((2, lambdas.size, X_train.shape[1]))

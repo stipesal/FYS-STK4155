@@ -7,10 +7,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 from linear_regression import OLS, Ridge
-from utils import sample_franke_function
-from utils import design_matrix
-from utils import bootstrap
-from utils import bias_variance_analysis
+from franke import sample_franke
+from utils import design_matrix, bootstrap, bias_variance_analysis
 
 np.random.seed(2021)
 
@@ -24,7 +22,7 @@ LMBD = 1E-3
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 500
-x, y = sample_franke_function(N, noise=NOISE)
+x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
@@ -66,7 +64,7 @@ if SHOW_PLOTS:
 DEGREE = 10
 lambdas = np.logspace(-12, 3, 100)
 
-x, y = sample_franke_function(N, noise=NOISE)
+x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 X_train = design_matrix(x_train, degree=DEGREE)

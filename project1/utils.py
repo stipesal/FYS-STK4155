@@ -7,45 +7,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
 
 
-def franke_function(x, y):
-    term1 = 0.75 * np.exp(-(0.25 * (9*x - 2)**2) - 0.25 * ((9*y - 2)**2))
-    term2 = 0.75 * np.exp(-((9*x + 1)**2) / 49.0 - 0.1 * (9*y + 1))
-    term3 = 0.50 * np.exp(-(9*x - 7)**2 / 4.0 - 0.25 * ((9*y - 3)**2))
-    term4 = -0.2 * np.exp(-(9*x - 4)**2 - (9*y - 7)**2)
-    return term1 + term2 + term3 + term4
-
-
-def plot_franke_function(ax):
-    x = np.linspace(0, 1, 50)
-    x, y = np.meshgrid(x, x)
-    ax.plot_wireframe(
-        x, y, franke_function(x, y),
-        color="k",
-        label="Franke's function",
-        alpha=.3,
-    )
-
-
 def plot_3d():
     ax = plt.axes(projection='3d')
     ax.set_xlabel(r"$x$")
     ax.set_ylabel(r"$y$")
     ax.set_zlabel(r"$z$")
     return ax
-
-
-def sample_franke_function(N, noise):
-    """
-    Samples `N` uniform data points in the unit square `[0,1)^2`,
-    as well as the corresponding evaluation in Franke's function.
-    """
-    X = np.random.rand(N, 2)
-    x, y = X.T
-
-    Y = franke_function(x, y)
-    Y += noise * np.random.randn(N)
-    return X, Y
-
 
 @jit(nopython=True)
 def design_matrix(data, degree):

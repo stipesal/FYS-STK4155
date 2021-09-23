@@ -7,9 +7,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 from linear_regression import OLS
-from utils import sample_franke_function
-from utils import design_matrix
-from utils import bias_variance_analysis
+from franke import sample_franke
+from utils import design_matrix, bias_variance_analysis
 
 np.random.seed(2021)
 
@@ -22,7 +21,7 @@ N_BOOTSTRAP = 50
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 400
-x, y = sample_franke_function(N, noise=NOISE)
+x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
@@ -79,7 +78,7 @@ sample_sizes = np.logspace(2, 3, 200).astype(int)
 error = np.zeros((len(sample_sizes), 3))
 
 for i, N in enumerate(sample_sizes):
-    x, y = sample_franke_function(N, noise=NOISE)
+    x, y = sample_franke(N, noise=NOISE)
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
     X_train = design_matrix(x_train, degree=degree)

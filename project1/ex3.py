@@ -7,10 +7,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 from linear_regression import OLS
-from utils import sample_franke_function
-from utils import design_matrix
-from utils import bootstrap
-from utils import cross_validation
+from franke import sample_franke
+from utils import design_matrix, bootstrap, cross_validation
 
 np.random.seed(2021)
 
@@ -24,7 +22,7 @@ K_FOLD = 5
 
 # DATA. Uniform. Noise. Train-Test split.
 N = 1000
-x, y = sample_franke_function(N, noise=NOISE)
+x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
