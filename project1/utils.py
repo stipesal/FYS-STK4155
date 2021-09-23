@@ -71,8 +71,8 @@ def cross_validation(model, X, y, n_folds):
         "Test MSE": [],
     }
     for i in range(n_folds):
-        train = idx[i * size : (i+1) * size]
-        test = np.hstack((idx[:i * size], idx[(i+1) * size :]))
+        test= idx[i * size : (i+1) * size]
+        train = np.hstack((idx[:i * size], idx[(i+1) * size :]))
 
         model.fit(X[train], y[train])
 
