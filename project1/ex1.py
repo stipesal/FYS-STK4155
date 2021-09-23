@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+from linear_regression import OLS
 from utils import plot_3d
 from utils import franke_function
 from utils import sample_franke_function
 from utils import plot_franke_function
 from utils import design_matrix
-from utils import OLS
 
 np.random.seed(2021)
 

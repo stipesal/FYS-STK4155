@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+from linear_regression import OLS, Ridge, Lasso
 from utils import sample_franke_function
 from utils import design_matrix
 from utils import bootstrap
 from utils import bias_variance_analysis
-from utils import OLS, Ridge, Lasso
 
 warnings.filterwarnings("ignore")
 np.random.seed(2021)

@@ -8,8 +8,8 @@ import numpy as np
 from imageio import imread
 from sklearn.model_selection import train_test_split
 
+from linear_regression import OLS, Ridge, Lasso
 from utils import design_matrix
-from utils import OLS, Ridge, Lasso
 
 warnings.filterwarnings("ignore")
 np.random.seed(2021)
