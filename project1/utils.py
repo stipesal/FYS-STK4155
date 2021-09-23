@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 from numba import jit
 import numpy as np
 
-from scipy.special import binom
 from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
 
@@ -13,6 +12,7 @@ def plot_3d():
     ax.set_ylabel(r"$y$")
     ax.set_zlabel(r"$z$")
     return ax
+
 
 @jit(nopython=True)
 def design_matrix(data, degree):
