@@ -103,7 +103,7 @@ if SHOW_PLOTS:
 lambdas = np.logspace(-5, 4, 100)
 
 X_train = design_matrix(x_train, degree=2)
-ols = OLS().fit(X_train, x_train)
+ols = OLS().fit(X_train, y_train)
 
 betas = np.zeros((2, lambdas.size, X_train.shape[1]))
 for i, lmbd in enumerate(lambdas):
