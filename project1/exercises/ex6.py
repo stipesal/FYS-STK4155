@@ -2,12 +2,17 @@
 FYS-STK4155 @UiO, PROJECT I.
 Exercise 6: Terrain data
 """
+import os
+import sys
 import warnings
 import matplotlib.pyplot as plt
 import numpy as np
 from imageio import imread
 from sklearn.model_selection import train_test_split
 
+sys.path.append(
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
+)
 from linear_regression import OLS, Ridge, Lasso
 from utils import design_matrix
 
@@ -21,7 +26,9 @@ MAX_DEGREE = 20
 
 
 # LOAD TERRAIN.
-terrain1 = imread("SRTM_data_Norway_2.tif")
+terrain1 = imread(
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', "SRTM_data_Norway_2.tif")
+)
 m, n = terrain1.shape
 
 

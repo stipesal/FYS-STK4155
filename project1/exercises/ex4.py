@@ -2,10 +2,15 @@
 FYS-STK4155 @UiO, PROJECT I.
 Exercise 4: Ridge regression
 """
+import os
+import sys
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+sys.path.append(
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
+)
 from linear_regression import OLS, Ridge
 from franke import sample_franke
 from utils import design_matrix, bootstrap, bias_variance_analysis

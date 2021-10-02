@@ -2,10 +2,15 @@
 FYS-STK4155 @UiO, PROJECT I. 
 Exercise 1: Ordinary least squares
 """
+import os
+import sys
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+sys.path.append(
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
+)
 from linear_regression import OLS
 from franke import franke_function, sample_franke, plot_franke
 from utils import plot_3d, design_matrix
