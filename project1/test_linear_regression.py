@@ -1,3 +1,7 @@
+"""
+FYS-STK4155 @UiO, PROJECT I.
+Testing: Linear Regression.
+"""
 import pytest
 import numpy as np
 
@@ -13,6 +17,7 @@ np.random.seed(2021)
 
 @pytest.fixture(scope="session")
 def data():
+    """Regression dummy data."""
     X, y = make_regression(n_samples=1000, n_features=100)
     return X, y
 

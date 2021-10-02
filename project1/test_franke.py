@@ -1,3 +1,7 @@
+"""
+FYS-STK4155 @UiO, PROJECT I.
+Testing: Franke's function.
+"""
 import pytest
 import numpy as np
 
@@ -6,8 +10,8 @@ from franke import franke_function
 
 def test_franke() :
     """
-    Validates the Franke function as against data from
-    https://www.sfu.ca/~ssurjano/Code/franke2dm.html.
+    Validates Franke's function against data from [*].
+    [*] https://www.sfu.ca/~ssurjano/Code/franke2dm.html
     """
     x = np.array(
         [

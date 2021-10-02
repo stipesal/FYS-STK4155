@@ -1,3 +1,7 @@
+"""
+FYS-STK4155 @UiO, PROJECT I.
+Useful functions such as design matrix and sampling methods.
+"""
 import matplotlib.pyplot as plt
 from numba import jit
 import numpy as np
@@ -7,6 +11,7 @@ from sklearn.utils import resample
 
 
 def plot_3d():
+    """Returns an 3D axis object with labeled axis."""
     ax = plt.axes(projection='3d')
     ax.set_xlabel(r"$x$")
     ax.set_ylabel(r"$y$")
@@ -14,9 +19,9 @@ def plot_3d():
     return ax
 
 
-@jit(nopython=True)
+@jit(nopython=True)  # Compile just-in-time.
 def design_matrix(data, degree):
-    """Compare to sklearns' PolynomialFeatures."""
+    """Assembles the design matrix needed for linear regression."""
     monoms = []
     for n in range(degree + 1):
         for k in range(n + 1):
@@ -31,6 +36,10 @@ def design_matrix(data, degree):
 
 
 def bias_variance_analysis(model, X_train, X_test, y_train, y_test, n_bootstraps):
+    """
+    Estimates and returns the error, bias, and variance
+    of the model given the data by using the bootstrap method.
+    """
     y_pred = np.zeros((n_bootstraps, y_test.shape[0]))
 
     for i in range(n_bootstraps):
@@ -45,6 +54,7 @@ def bias_variance_analysis(model, X_train, X_test, y_train, y_test, n_bootstraps
 
 
 def bootstrap(model, X, y, n_bootstraps):
+    """Fits the model given the data using the bootstrap method."""
     X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=.2)
 
     model.boot = {
@@ -63,6 +73,7 @@ def bootstrap(model, X, y, n_bootstraps):
 
 
 def cross_validation(model, X, y, n_folds):
+    """Fits the model given the data using cross validation."""
     idx = np.arange(X.shape[0])
     size = X.shape[0] // n_folds
 
