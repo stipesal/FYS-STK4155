@@ -31,9 +31,6 @@ class LinearRegression():
 
 
 class OLS(LinearRegression):
-    def __init__(self):
-        pass
-
     def fit(self, X, y, confidence=None):
         """
         Confidence should be in `(0, 1)`, e.g. 'confidence=0.95'
