@@ -41,9 +41,10 @@ class OLS(LinearRegression):
         self.r2_train = r2(y, self.predict(X))
 
         if confidence is not None:
-            sigma = ((X @ self.beta - y) ** 2).sum() / (y.size - 2)
+            n, p = X.shape
+            sigma = ((X @ self.beta - y) ** 2).sum() / (n - p)
             X_ = np.linalg.inv(X.T @ X)
-            q = t.ppf(1 - (1 - confidence) / 2, y.size - 2)
+            q = t.ppf(1 - (1 - confidence) / 2, n - p)
             dev = np.sqrt(sigma * np.diag(X_))
             self.CI = np.array([self.beta - q * dev, self.beta + q * dev]).T
 
