@@ -69,7 +69,7 @@ class Ridge(LinearRegression):
 
 
 class Lasso(LinearRegression):
-    """Basically Scikit-Learn's Lasso."""
+    """Basically a wrapper of Scikit-Learn's Lasso."""
     def __init__(self, reg_param):
         """
         Sets the regularization parameter for the penalty term,
