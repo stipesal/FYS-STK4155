@@ -18,6 +18,7 @@ from utils import plot_3d, design_matrix
 np.random.seed(2021)
 
 SHOW_PLOTS = True
+SAVE_FIGS = True
 NOISE = .1
 TEST_SIZE = .2
 DEGREE = 5
@@ -38,6 +39,8 @@ if SHOW_PLOTS:
     ax.set_title("Sampling Franke's function.")
     plt.legend()
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/sampling_franke.pdf", format="pdf")
     plt.show()
 
 
@@ -76,6 +79,8 @@ if SHOW_PLOTS:
     ax.set_title("Predicting Franke's function.")
     plt.legend()
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/prediction_3d.pdf", format="pdf")
     plt.show()
 
 
@@ -97,4 +102,6 @@ if SHOW_PLOTS:
     plt.ylabel(r"$\beta_j \pm \hat{\sigma} \sqrt{(X^{\top}X)^{-1}_{jj}}$", size=14)
     plt.xlabel(r"$j$", size=14)
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/confidence_intervals.pdf", format="pdf")
     plt.show()

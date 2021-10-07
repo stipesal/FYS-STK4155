@@ -20,6 +20,7 @@ warnings.filterwarnings("ignore")
 np.random.seed(2021)
 
 SHOW_PLOTS = True
+SAVE_FIGS = True
 TEST_SIZE = .2
 LMBD = 1E-4
 MAX_DEGREE = 20
@@ -53,6 +54,9 @@ if SHOW_PLOTS:
     plt.xlabel("X")
     plt.ylabel("Y")
     plt.title("Terrain over Norway.")
+    plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/sampled_terrain.pdf", format="pdf")
     plt.show()
 
 
@@ -91,6 +95,8 @@ if SHOW_PLOTS:
     plt.title("OLS vs. RIDGE vs. LASSO")
     plt.legend()
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/ols_vs_ridge_vs_lasso.pdf", format="pdf")
     plt.show()
 
 best_idx = np.unravel_index(np.argmin(mse), mse.shape)
@@ -123,4 +129,6 @@ if SHOW_PLOTS:
     axs[0].set_title("Ground truth.")
     axs[1].set_title("Prediction.")
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/terrain_pred.pdf", format="pdf")
     plt.show()

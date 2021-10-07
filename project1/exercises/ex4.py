@@ -18,6 +18,7 @@ from utils import design_matrix, bootstrap, bias_variance_analysis
 np.random.seed(2021)
 
 SHOW_PLOTS = True
+SAVE_FIGS = True
 NOISE = .1
 TEST_SIZE = .2
 MAX_DEGREE = 10
@@ -61,6 +62,8 @@ if SHOW_PLOTS:
     plt.title("Loss. OLS vs. Ridge.")
     plt.legend()
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/ridge_vs_ols.pdf", format="pdf")
     plt.show()
 
 
@@ -99,4 +102,7 @@ if SHOW_PLOTS:
     plt.title("Bias-variance tradeoff. Ridge.")
     plt.xlabel(r"$\lambda$")
     plt.legend()
+    plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/bias_variance_ridge.pdf", format="pdf")
     plt.show()

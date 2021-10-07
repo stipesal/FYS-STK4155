@@ -18,6 +18,7 @@ from utils import design_matrix, bias_variance_analysis
 np.random.seed(2021)
 
 SHOW_PLOTS = True
+SAVE_FIGS = True
 NOISE = .1
 TEST_SIZE = .2
 MAX_DEGREE = 10
@@ -51,6 +52,8 @@ if SHOW_PLOTS:
     plt.title("Loss")
     plt.legend()
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/mse_franke.pdf", format="pdf")
     plt.show()
 
 
@@ -73,6 +76,8 @@ if SHOW_PLOTS:
     plt.title("Bias-variance tradeoff")
     plt.xlabel("Polynomial degree")
     plt.legend()
+    if SAVE_FIGS:
+        plt.savefig("figs/bias_variance_degree.pdf", format="pdf")
     plt.show()
 
 
@@ -101,4 +106,6 @@ if SHOW_PLOTS:
     plt.title("Bias-variance tradeoff.")
     plt.xlabel("Sample size.")
     plt.legend()
+    if SAVE_FIGS:
+        plt.savefig("figs/bias_variance_sample_size.pdf", format="pdf")
     plt.show()

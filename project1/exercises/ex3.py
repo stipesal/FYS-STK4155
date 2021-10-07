@@ -18,6 +18,7 @@ from utils import design_matrix, bootstrap, cross_validation
 np.random.seed(2021)
 
 SHOW_PLOTS = True
+SAVE_FIGS = True
 NOISE = .1
 TEST_SIZE = .2
 MAX_DEGREE = 8
@@ -56,4 +57,7 @@ if SHOW_PLOTS:
     plt.xlabel("Polynomial degree")
     plt.ylabel("MSE")
     plt.legend()
+    plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/bs_vs_cv.pdf", format="pdf")
     plt.show()
