@@ -22,12 +22,12 @@ SAVE_FIGS = True
 NOISE = .1
 TEST_SIZE = .2
 MAX_DEGREE = 8
-N_BOOTSTRAP = 50
+N_BOOTSTRAP = 100
 K_FOLD = 5
 
 
 # DATA. Uniform. Noise. Train-Test split.
-N = 1000
+N = 400
 x, y = sample_franke(N, noise=NOISE)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
@@ -53,8 +53,8 @@ if SHOW_PLOTS:
     plt.plot(boot[:, 1], "r-o", label="BS - Test")
     plt.plot(cv[:, 0], "b--o", label="CV - Train")
     plt.plot(cv[:, 1], "b-o", label="CV - Test")
-    plt.title("Bootstrap vs. cross-validation")
-    plt.xlabel("Polynomial degree")
+    plt.title("Bootstrap vs. Cross-validation")
+    plt.xlabel(r"Polynomial degree $d$")
     plt.ylabel("MSE")
     plt.legend()
     plt.tight_layout()
