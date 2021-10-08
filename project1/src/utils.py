@@ -64,11 +64,11 @@ def bootstrap(model, X, y, n_bootstraps):
     }
     for i in range(n_bootstraps):
         x_, y_ = resample(X_train, Y_train)
-        model.fit(x_, y_)
-        model.score(X_test, Y_test)
 
-        model.boot["Train MSE"].append(model.mse_train)
-        model.boot["Test MSE"].append(model.mse_test)
+        model.fit(x_, y_)
+
+        model.boot["Train MSE"].append(model.score(x_, y_))
+        model.boot["Test MSE"].append(model.score(X_test, Y_test))
         model.boot["beta"][i] = model.beta
 
 
