@@ -32,8 +32,8 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=TEST_SIZE)
 
 
 # LOSS. Model complexity.
-train_mse = []
-test_mse = []
+train_mse, test_mse = [], []
+train_r2, test_r2 = [], []
 for degree in range(1, MAX_DEGREE + 1):
     X_train = design_matrix(x_train, degree=degree)
     X_test = design_matrix(x_test, degree=degree)
@@ -43,17 +43,23 @@ for degree in range(1, MAX_DEGREE + 1):
 
     train_mse.append(model.mse_train)
     test_mse.append(model.mse_test)
+    train_r2.append(model.r2_train)
+    test_r2.append(model.r2_test)
 
 if SHOW_PLOTS:
-    plt.plot(train_mse, "-o", label="Train")
-    plt.plot(test_mse, "-o", label="Test")
-    plt.xlabel("Polynomial degree")
-    plt.ylabel("MSE")
-    plt.title("Loss")
+    fig, axs = plt.subplots(nrows=1, ncols=2)
+    axs[0].plot(train_mse, "-o", label="Train")
+    axs[0].plot(test_mse, "-o", label="Test")
+    axs[0].set_xlabel(r"Polynomial degree $d$")
+    axs[0].set_ylabel("MSE")
+    axs[1].plot(train_r2, "-o", label="Train")
+    axs[1].plot(test_r2, "-o", label="Test")
+    axs[1].set_xlabel(r"Polynomial degree $d$")
+    axs[1].set_ylabel("R2")
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/mse_franke.pdf", format="pdf")
+        plt.savefig("figs/mse_r2_franke.pdf", format="pdf")
     plt.show()
 
 
