@@ -14,6 +14,7 @@ sys.path.append(
 from linear_regression import OLS
 from franke import franke_function, sample_franke, plot_franke
 from utils import plot_3d, design_matrix
+from utils import LEGEND_SIZE, LABEL_SIZE
 
 np.random.seed(2021)
 
@@ -37,7 +38,7 @@ if SHOW_PLOTS:
     ax.scatter3D(*x_train.T, y_train, label="Train data")
     ax.scatter3D(*x_test.T, y_test, label="Test data")
     ax.set_title("Sampling Franke's function.")
-    plt.legend()
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("figs/sampling_franke.pdf", bbox_inches='tight', format="pdf")
@@ -61,10 +62,15 @@ if SHOW_PLOTS:
     # 2D.
     fig, axs = plt.subplots(nrows=1, ncols=2)
     axs[0].imshow(franke_function(x, y))
-    axs[1].imshow((model.predict(mgrid)).reshape(n, n))
     axs[0].set_title("Franke's function.")
+    axs[1].imshow((model.predict(mgrid)).reshape(n, n))
     axs[1].set_title("Prediction.")
+    for i in range(len(axs)):
+        axs[i].set_xlabel(r"$x$", size=LABEL_SIZE)
+        axs[i].set_ylabel(r"$y$", size=LABEL_SIZE)
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("figs/prediction_2d.pdf", bbox_inches='tight', format="pdf")
     plt.show()
     # 3D.
     ax = plot_3d()
@@ -99,8 +105,8 @@ if SHOW_PLOTS:
     plt.errorbar(range(len(model.beta)), model.beta, yerr=devs, fmt='o')
     plt.title(r"OLS estimation $\beta$.")
     plt.xticks(np.arange(len(model.beta)))
-    plt.ylabel(r"$\beta_j \pm \hat{\sigma} \sqrt{(X^{\top}X)^{-1}_{jj}}$", size=14)
-    plt.xlabel(r"$j$", size=14)
+    plt.ylabel(r"$\beta_j \pm \hat{\sigma} \sqrt{(X^{\top}X)^{-1}_{jj}}$", size=LABEL_SIZE)
+    plt.xlabel(r"$j$", size=LABEL_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("figs/confidence_intervals.pdf", bbox_inches='tight', format="pdf")

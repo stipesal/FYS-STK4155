@@ -14,6 +14,7 @@ sys.path.append(
 from linear_regression import OLS, Ridge
 from franke import sample_franke
 from utils import design_matrix, bootstrap, bias_variance_analysis
+from utils import LEGEND_SIZE, LABEL_SIZE
 
 np.random.seed(2021)
 
@@ -57,10 +58,10 @@ if SHOW_PLOTS:
     plt.plot(test_mse, "k--o", label="OLS - Test")
     plt.plot(train_mse_ridge, "r-o", label="Ridge - Train")
     plt.plot(test_mse_ridge, "r--o", label="Ridge - Test")
-    plt.xlabel("Polynomial degree")
-    plt.ylabel("MSE")
+    plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
+    plt.ylabel("MSE", size=LABEL_SIZE)
     plt.title("Loss. OLS vs. Ridge.")
-    plt.legend()
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("figs/ridge_vs_ols.pdf", bbox_inches='tight', format="pdf")
@@ -100,8 +101,8 @@ if SHOW_PLOTS:
     plt.loglog(lambdas, bias, "r", label='Bias^2')
     plt.loglog(lambdas, var, "b", label='Variance')
     plt.title("Bias-variance tradeoff. Ridge.")
-    plt.xlabel(r"$\lambda$")
-    plt.legend()
+    plt.xlabel(r"Regularization $\lambda$", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("figs/bias_variance_ridge.pdf", bbox_inches='tight', format="pdf")

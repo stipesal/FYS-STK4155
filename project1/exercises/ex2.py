@@ -14,6 +14,7 @@ sys.path.append(
 from linear_regression import OLS
 from franke import sample_franke
 from utils import design_matrix, bias_variance_analysis
+from utils import LEGEND_SIZE, LABEL_SIZE
 
 np.random.seed(2021)
 
@@ -50,13 +51,15 @@ if SHOW_PLOTS:
     fig, axs = plt.subplots(nrows=1, ncols=2)
     axs[0].plot(train_mse, "-o", label="Train")
     axs[0].plot(test_mse, "-o", label="Test")
-    axs[0].set_xlabel(r"Polynomial degree $d$")
-    axs[0].set_ylabel("MSE")
+    axs[0].set_xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
+    axs[0].set_ylabel("MSE", size=LABEL_SIZE)
+    axs[0].set_title("MSE")
     axs[1].plot(train_r2, "-o", label="Train")
     axs[1].plot(test_r2, "-o", label="Test")
-    axs[1].set_xlabel(r"Polynomial degree $d$")
-    axs[1].set_ylabel("R2")
-    plt.legend()
+    axs[1].set_xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
+    axs[1].set_ylabel("R2", size=LABEL_SIZE)
+    axs[1].set_title("R2")
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("figs/mse_r2_franke.pdf", bbox_inches='tight', format="pdf")
@@ -79,9 +82,9 @@ if SHOW_PLOTS:
     plt.plot(err, "k-o", label='Error')
     plt.plot(bias, "r-o", label='Bias^2')
     plt.plot(var, "b-o", label='Variance')
-    plt.title("Bias-variance tradeoff")
-    plt.xlabel("Polynomial degree")
-    plt.legend()
+    plt.title("Bias-variance tradeoff.")
+    plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
         plt.savefig("figs/bias_variance_degree.pdf", bbox_inches='tight', format="pdf")
     plt.show()
@@ -110,8 +113,8 @@ if SHOW_PLOTS:
     plt.loglog(sample_sizes, bias, "r", label='Bias^2')
     plt.loglog(sample_sizes, var, "b", label='Variance')
     plt.title("Bias-variance tradeoff.")
-    plt.xlabel("Sample size.")
-    plt.legend()
+    plt.xlabel(r"Sample size $N$", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
         plt.savefig("figs/bias_variance_sample_size.pdf", bbox_inches='tight', format="pdf")
     plt.show()

@@ -15,6 +15,7 @@ sys.path.append(
 )
 from linear_regression import OLS, Ridge, Lasso
 from utils import design_matrix
+from utils import LEGEND_SIZE, LABEL_SIZE
 
 warnings.filterwarnings("ignore")
 np.random.seed(2021)
@@ -51,8 +52,8 @@ if SHOW_PLOTS:
     plt.imshow(terrain1, cmap="terrain")
     plt.scatter(*x_train.T, s=1, c="k", label="train")
     plt.scatter(*x_test.T, s=1, c="r", label="test")
-    plt.xlabel("X")
-    plt.ylabel("Y")
+    plt.xlabel(r"$X$", size=LABEL_SIZE)
+    plt.ylabel(r"$Y$", size=LABEL_SIZE)
     plt.title("Terrain over Norway.")
     plt.tight_layout()
     if SAVE_FIGS:
@@ -87,13 +88,13 @@ for deg in range(MAX_DEGREE):
         mse[i][deg] = model.mse_test
 
 if SHOW_PLOTS:
-    plt.semilogy(range(MAX_DEGREE), mse[0], "k", label="OLS")
-    plt.semilogy(range(MAX_DEGREE), mse[1], "r", label="Ridge")
-    plt.semilogy(range(MAX_DEGREE), mse[2], "b", label="Lasso")
-    plt.xlabel("Polynomial degree")
-    plt.ylabel("MSE")
-    plt.title("OLS vs. RIDGE vs. LASSO")
-    plt.legend()
+    plt.semilogy(range(MAX_DEGREE), mse[0], "k", lw=2, label="OLS")
+    plt.semilogy(range(MAX_DEGREE), mse[1], "r", lw=2, label="Ridge")
+    plt.semilogy(range(MAX_DEGREE), mse[2], "b", lw=2, label="Lasso")
+    plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
+    plt.ylabel("MSE", size=LABEL_SIZE)
+    plt.title("Loss. OLS vs. Ridge vs. Lasso.")
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("figs/ols_vs_ridge_vs_lasso.pdf", bbox_inches='tight', format="pdf")
@@ -125,8 +126,12 @@ if SHOW_PLOTS:
 
     fig, axs = plt.subplots(nrows=1, ncols=2)
     axs[0].imshow(terrain1, cmap="terrain")
-    axs[1].imshow(best_model.predict(mesh).reshape((n_y, n_x)), cmap="terrain")
+    axs[0].set_xlabel(r"$X$", size=LABEL_SIZE)
+    axs[0].set_ylabel(r"$Y$", size=LABEL_SIZE)
     axs[0].set_title("Ground truth.")
+    axs[1].imshow(best_model.predict(mesh).reshape((n_y, n_x)), cmap="terrain")
+    axs[1].set_xlabel(r"$X$", size=LABEL_SIZE)
+    axs[1].set_ylabel(r"$Y$", size=LABEL_SIZE)
     axs[1].set_title("Prediction.")
     plt.tight_layout()
     if SAVE_FIGS:

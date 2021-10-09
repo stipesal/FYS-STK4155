@@ -10,6 +10,7 @@ sys.path.append(
 from linear_regression import OLS
 from franke import sample_franke
 from utils import design_matrix
+from utils import LEGEND_SIZE, LABEL_SIZE
 
 np.random.seed(2021)
 
@@ -48,9 +49,10 @@ for eps in noise:
 plt.loglog(noise, train_mse, label="Train MSE")
 plt.loglog(noise, test_mse, label="Test MSE")
 plt.loglog(noise, .1 * noise**2, "k--", label="order 2")
-plt.xlabel(r"Variance $\sigma^2$ of white noise $\varepsilon$.")
-plt.ylabel("MSE")
-plt.legend()
+plt.title(r"Effect of white noise $\varepsilon \sim N(0, \sigma^2)$.")
+plt.xlabel(r"Variance $\sigma^2$", size=LABEL_SIZE)
+plt.ylabel("MSE", size=LABEL_SIZE)
+plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
 plt.savefig("figs/white_noise.pdf", bbox_inches='tight', format="pdf")
 plt.show()

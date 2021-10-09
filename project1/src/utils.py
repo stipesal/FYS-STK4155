@@ -10,12 +10,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
 
 
+LEGEND_SIZE = 12
+LABEL_SIZE = 12
+
+
 def plot_3d():
     """Returns an 3D axis object with labeled axis."""
     ax = plt.axes(projection='3d')
-    ax.set_xlabel(r"$x$")
-    ax.set_ylabel(r"$y$")
-    ax.set_zlabel(r"$z$")
+    ax.set_xlabel(r"$x$", size=LABEL_SIZE)
+    ax.set_ylabel(r"$y$", size=LABEL_SIZE)
+    ax.set_zlabel(r"$z$", size=LABEL_SIZE)
     return ax
 
 

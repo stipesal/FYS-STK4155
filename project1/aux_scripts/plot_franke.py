@@ -16,6 +16,7 @@ ax.plot_surface(
     x, y, franke_function(x, y),
     cmap="twilight",
 )
+plt.title("Franke's function.")
 plt.tight_layout()
 plt.savefig("figs/franke.pdf", bbox_inches='tight', format="pdf")
 plt.show()

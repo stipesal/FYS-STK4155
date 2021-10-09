@@ -14,6 +14,7 @@ sys.path.append(
 from linear_regression import OLS
 from franke import sample_franke
 from utils import design_matrix, bootstrap, cross_validation
+from utils import LEGEND_SIZE, LABEL_SIZE
 
 np.random.seed(2021)
 
@@ -53,10 +54,10 @@ if SHOW_PLOTS:
     plt.plot(boot[:, 1], "r-o", label="BS - Test")
     plt.plot(cv[:, 0], "b--o", label="CV - Train")
     plt.plot(cv[:, 1], "b-o", label="CV - Test")
-    plt.title("Bootstrap vs. Cross-validation")
-    plt.xlabel(r"Polynomial degree $d$")
-    plt.ylabel("MSE")
-    plt.legend()
+    plt.title("Bootstrap vs. Cross-validation.")
+    plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
+    plt.ylabel("MSE", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("figs/bs_vs_cv.pdf", bbox_inches='tight', format="pdf")
