@@ -18,5 +18,7 @@ ax.plot_surface(
 )
 plt.title("Franke's function.")
 plt.tight_layout()
+if not os.path.exists("figs/"):
+    os.makedirs("figs/")
 plt.savefig("figs/franke.pdf", bbox_inches='tight', format="pdf")
 plt.show()

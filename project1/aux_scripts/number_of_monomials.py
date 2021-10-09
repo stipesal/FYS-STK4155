@@ -18,5 +18,7 @@ plt.ylabel("Number of monomials", size=LABEL_SIZE)
 plt.title("Comparison of number of monomials.")
 plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
+if not os.path.exists("figs/"):
+    os.makedirs("figs/")
 plt.savefig("figs/number_of_monomials.pdf", bbox_inches='tight', format="pdf")
 plt.show()

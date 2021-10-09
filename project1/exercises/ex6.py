@@ -57,6 +57,8 @@ if SHOW_PLOTS:
     plt.title("Terrain over Norway.")
     plt.tight_layout()
     if SAVE_FIGS:
+        if not os.path.exists("figs/"):
+            os.makedirs("figs/")
         plt.savefig("figs/sampled_terrain.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 

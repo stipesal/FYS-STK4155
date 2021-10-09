@@ -54,5 +54,7 @@ plt.xlabel(r"Variance $\sigma^2$", size=LABEL_SIZE)
 plt.ylabel("MSE", size=LABEL_SIZE)
 plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
+if not os.path.exists("figs/"):
+    os.makedirs("figs/")
 plt.savefig("figs/white_noise.pdf", bbox_inches='tight', format="pdf")
 plt.show()

@@ -66,6 +66,8 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
+        if not os.path.exists("figs/"):
+            os.makedirs("figs/")
         plt.savefig("figs/lasso_vs_ols.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
