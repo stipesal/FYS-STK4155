@@ -40,7 +40,7 @@ if SHOW_PLOTS:
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/sampling_franke.pdf", format="pdf")
+        plt.savefig("figs/sampling_franke.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -77,10 +77,10 @@ if SHOW_PLOTS:
         alpha=.3,
     )
     ax.set_title("Predicting Franke's function.")
-    plt.legend()
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/prediction_3d.pdf", format="pdf")
+        plt.savefig("figs/prediction_3d.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -103,5 +103,5 @@ if SHOW_PLOTS:
     plt.xlabel(r"$j$", size=14)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/confidence_intervals.pdf", format="pdf")
+        plt.savefig("figs/confidence_intervals.pdf", bbox_inches='tight', format="pdf")
     plt.show()

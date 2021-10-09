@@ -43,5 +43,5 @@ for i in range(len(axs)):
     axs[i].get_xaxis().set_visible(False)
     axs[i].get_yaxis().set_visible(False)
 plt.tight_layout()
-plt.savefig("figs/terrain.pdf", format="pdf")
+plt.savefig("figs/terrain.pdf", bbox_inches='tight', format="pdf")
 plt.show()

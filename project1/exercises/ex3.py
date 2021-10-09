@@ -59,5 +59,5 @@ if SHOW_PLOTS:
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/bs_vs_cv.pdf", format="pdf")
+        plt.savefig("figs/bs_vs_cv.pdf", bbox_inches='tight', format="pdf")
     plt.show()

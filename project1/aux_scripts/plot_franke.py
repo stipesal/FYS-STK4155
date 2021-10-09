@@ -17,5 +17,5 @@ ax.plot_surface(
     cmap="twilight",
 )
 plt.tight_layout()
-plt.savefig("figs/franke.pdf", format="pdf")
+plt.savefig("figs/franke.pdf", bbox_inches='tight', format="pdf")
 plt.show()

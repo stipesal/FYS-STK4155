@@ -56,7 +56,7 @@ if SHOW_PLOTS:
     plt.title("Terrain over Norway.")
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/sampled_terrain.pdf", format="pdf")
+        plt.savefig("figs/sampled_terrain.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -96,7 +96,7 @@ if SHOW_PLOTS:
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/ols_vs_ridge_vs_lasso.pdf", format="pdf")
+        plt.savefig("figs/ols_vs_ridge_vs_lasso.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 best_idx = np.unravel_index(np.argmin(mse), mse.shape)
@@ -130,5 +130,5 @@ if SHOW_PLOTS:
     axs[1].set_title("Prediction.")
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/terrain_pred.pdf", format="pdf")
+        plt.savefig("figs/terrain_pred.pdf", bbox_inches='tight', format="pdf")
     plt.show()

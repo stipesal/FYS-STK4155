@@ -59,7 +59,7 @@ if SHOW_PLOTS:
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/mse_r2_franke.pdf", format="pdf")
+        plt.savefig("figs/mse_r2_franke.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -83,7 +83,7 @@ if SHOW_PLOTS:
     plt.xlabel("Polynomial degree")
     plt.legend()
     if SAVE_FIGS:
-        plt.savefig("figs/bias_variance_degree.pdf", format="pdf")
+        plt.savefig("figs/bias_variance_degree.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -113,5 +113,5 @@ if SHOW_PLOTS:
     plt.xlabel("Sample size.")
     plt.legend()
     if SAVE_FIGS:
-        plt.savefig("figs/bias_variance_sample_size.pdf", format="pdf")
+        plt.savefig("figs/bias_variance_sample_size.pdf", bbox_inches='tight', format="pdf")
     plt.show()

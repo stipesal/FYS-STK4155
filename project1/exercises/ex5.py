@@ -65,7 +65,7 @@ if SHOW_PLOTS:
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/lasso_vs_ols.pdf", format="pdf")
+        plt.savefig("figs/lasso_vs_ols.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -106,7 +106,7 @@ if SHOW_PLOTS:
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/bias_variance_lasso.pdf", format="pdf")
+        plt.savefig("figs/bias_variance_lasso.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -135,5 +135,5 @@ if SHOW_PLOTS:
     plt.legend()
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/regression_coeffs.pdf", format="pdf")
+        plt.savefig("figs/regression_coeffs.pdf", bbox_inches='tight', format="pdf")
     plt.show()
