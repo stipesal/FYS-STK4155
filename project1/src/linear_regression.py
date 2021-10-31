@@ -9,6 +9,30 @@ from sklearn.metrics import mean_squared_error as mse
 from sklearn.metrics import r2_score as r2
 
 
+def sgd(data, n_epochs=100, batch_size=32, lr=1e-3, reg=0.):
+    X_train, X_test, y_train, y_test = data
+
+    n_batches = X_train.shape[0] // batch_size
+    idx = np.arange(X_train.shape[0])
+
+    beta = np.random.randn(X_train.shape[1])
+
+    f = lambda beta, X, y: ((X @ beta - y) ** 2).sum() / X.shape[0] + reg * (beta ** 2).sum()
+    df = lambda beta, X, y: 2 / X.shape[0] * X.T @ (X @ beta - y) + 2 * reg * beta
+
+    hist = {"Train MSE": [], "Test MSE": []}
+    for _ in range(n_epochs):
+        np.random.shuffle(idx)
+
+        for b in range(n_batches):
+            batch = idx[b * batch_size: (b + 1) * batch_size]
+            beta -= lr * df(beta, X_train[batch], y_train[batch])
+
+        hist["Train MSE"].append(f(beta, X_train, y_train))
+        hist["Test MSE"].append(f(beta, X_test, y_test))
+    return beta, hist
+
+
 class LinearRegression():
     """Base Linear Regression object with the basic methods."""
     def __init__(self):
@@ -50,6 +74,10 @@ class OLS(LinearRegression):
 
         return self
 
+    def fit_sgd(self, data, n_epochs, batch_size, lr):
+        self.beta, self.hist = sgd(data, n_epochs, batch_size, lr)
+        return self
+
 
 class Ridge(LinearRegression):
     def __init__(self, reg_param):
@@ -65,6 +93,10 @@ class Ridge(LinearRegression):
         )
         self.mse_train = mse(y, self.predict(X))
         self.r2_train = r2(y, self.predict(X))
+        return self
+
+    def fit_sgd(self, data, n_epochs, batch_size, lr):
+        self.beta, self.hist = sgd(data, n_epochs, batch_size, lr, self.reg_param)
         return self
 
 
