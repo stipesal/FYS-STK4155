@@ -4,10 +4,9 @@ Feedforward neural network.
 """
 import numpy as np
 
-from sklearn.metrics import mean_squared_error as mse
-
-from activations import identity, sigmoid, relu, leaky_relu
+from activations import identity, sigmoid, relu, leaky_relu, softmax
 from weight_inits import xavier, kaiming
+from utils import mse, acc, ohe
 
 
 class Layer:
@@ -60,10 +59,18 @@ class Output(Layer):
         self.weights = self.weights.squeeze()
 
     def backward(self, y_pred, y_true):
-        error = 2 * (y_pred - y_true)
-        self.delta = np.outer(error, self.weights)
-        self.dW = (error * self.input.T).mean(axis=-1)
-        self.db = error.mean(axis=-1)
+        if self.activation == "identity":   # Regression.
+            error = 2 * (y_pred - y_true)
+            self.delta = np.outer(error, self.weights)
+            self.dW = (error * self.input.T).mean(axis=-1)
+            self.db = error.mean(axis=-1)
+
+        elif self.activation == "softmax":  # Classification.
+            res = y_pred - ohe(y_true, y_pred.shape[1])
+            self.delta = (self.weights @ y_pred.T - self.weights[:, y_true]).mean(axis=-1)
+            self.dW = np.einsum('ij,ik->jki', self.input, res).mean(axis=-1)
+            self.db = (y_pred - res).T.mean(axis=-1)
+
         return self.delta
 
 
@@ -72,13 +79,22 @@ class FFNN:
         self.reg_param = reg_param
         self.learning_rate = learning_rate
         self.p = p
+        self.type = (
+            "regression" if self.p[-1] == 1 else "classification"
+        )
         self.set_layers()
 
     def set_layers(self):
         self.layers = []
         for i in range(len(self.p) - 2):
             self.layers.append(Hidden(self.p[i], self.p[i + 1], "relu", "xavier"))
-        self.layers.append(Output(self.p[-2], self.p[-1], "identity", "xavier"))
+
+        # Output layer activation depends on problem type.
+        if self.type == "regression":
+            out_activation = "identity"
+        else:
+            out_activation = "softmax"
+        self.layers.append(Output(self.p[-2], self.p[-1], out_activation, "xavier"))
 
     def predict(self, input):
         for layer in self.layers:
@@ -109,7 +125,10 @@ class FFNN:
             self.eval(data)
 
     def score(self, X, y):
-        return mse(self.predict(X), y)
+        if self.type == "regression":
+            return mse(self.predict(X), y)
+        else:
+            return acc(self.predict(X), y)
 
     def eval(self, data):
         X_train, X_test, y_train, y_test = data
