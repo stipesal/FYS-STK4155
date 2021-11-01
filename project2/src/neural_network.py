@@ -4,6 +4,8 @@ Feedforward neural network.
 """
 import numpy as np
 
+from tqdm import trange
+
 from activations import identity, sigmoid, relu, leaky_relu, softmax
 from weight_inits import xavier, kaiming
 from utils import mse, acc, ohe
@@ -116,13 +118,16 @@ class FFNN:
         idx = np.arange(X_train.shape[0])
 
         self.hist = {"Train MSE": [], "Test MSE": []}
-        for _ in range(n_epochs):
+        t = trange(n_epochs, desc="Train")
+        for _ in t:
             np.random.shuffle(idx)
             for b in range(n_batches):
                 batch = idx[b * batch_size: (b + 1) * batch_size]
                 self.backprop(X_train[batch], y_train[batch])
 
             self.eval(data)
+            train_acc, test_acc = self.hist["Train MSE"][-1], self.hist["Test MSE"][-1]
+            t.set_postfix(train_acc=train_acc, test_acc=test_acc)
 
     def score(self, X, y):
         if self.type == "regression":
