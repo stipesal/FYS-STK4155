@@ -25,3 +25,10 @@ def leaky_relu():
     f = lambda x: np.where(x > 0, x, alpha * x)
     df = lambda x: np.where(x > 0, 1, alpha)
     return f, df
+
+def softmax():
+    def f(x):
+        x -= x.max(axis=-1, keepdims=True)
+        return np.exp(x) / np.exp(x).sum(axis=-1, keepdims=True)
+    df = lambda x: 1. # Not necessary for now.
+    return f, df
