@@ -115,7 +115,7 @@ class FFNN:
             grad = layer.backward(grad)
             layer.update(self.reg_param, self.learning_rate)
 
-    def fit(self, data, n_epochs, batch_size, learning_rate):
+    def fit(self, data, n_epochs, batch_size, learning_rate, verbose=True):
         self.learning_rate = learning_rate
         X_train, _, y_train, _ = data
 
@@ -123,7 +123,8 @@ class FFNN:
         idx = np.arange(X_train.shape[0])
 
         self.hist = {"Train MSE": [], "Test MSE": []}
-        t = trange(n_epochs, desc="Train")
+        if verbose: t = trange(n_epochs, desc="Train")
+        else: t = range(n_epochs)
         for _ in t:
             np.random.shuffle(idx)
             for b in range(n_batches):
@@ -132,7 +133,7 @@ class FFNN:
 
             self.eval(data)
             train_acc, test_acc = self.hist["Train MSE"][-1], self.hist["Test MSE"][-1]
-            t.set_postfix(train_acc=train_acc, test_acc=test_acc)
+            if verbose: t.set_postfix(train_acc=train_acc, test_acc=test_acc)
 
         return self
 
