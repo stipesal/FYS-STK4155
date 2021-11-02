@@ -77,9 +77,8 @@ class Output(Layer):
 
 
 class FFNN:
-    def __init__(self, p, reg_param, learning_rate):
+    def __init__(self, p, reg_param):
         self.reg_param = reg_param
-        self.learning_rate = learning_rate
         self.p = p
         self.type = (
             "regression" if self.p[-1] == 1 else "classification"
@@ -111,7 +110,8 @@ class FFNN:
             grad = layer.backward(grad)
             layer.update(self.reg_param, self.learning_rate)
 
-    def fit(self, data, n_epochs, batch_size):
+    def fit(self, data, n_epochs, batch_size, learning_rate):
+        self.learning_rate = learning_rate
         X_train, _, y_train, _ = data
 
         n_batches = X_train.shape[0] // batch_size
