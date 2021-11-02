@@ -11,8 +11,8 @@ from sklearn.datasets import make_regression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 
-from utils import design_matrix, bias_variance_analysis, cross_validation
-from linear_regression import OLS
+from src.utils import design_matrix, bias_variance_analysis, cross_validation
+from src.linear_regression import OLS
 
 
 np.random.seed(2021)

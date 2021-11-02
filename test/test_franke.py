@@ -5,7 +5,7 @@ Testing: Franke's function.
 import pytest
 import numpy as np
 
-from franke import franke_function
+from src.franke import franke_function
 
 
 def test_franke() :

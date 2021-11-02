@@ -9,7 +9,7 @@ from sklearn.datasets import make_regression
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Ridge as SKL_Ridge
 
-from linear_regression import OLS, Ridge
+from src.linear_regression import OLS, Ridge
 
 
 np.random.seed(2021)
