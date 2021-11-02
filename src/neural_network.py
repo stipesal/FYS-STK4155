@@ -111,7 +111,7 @@ class FFNN:
             grad = layer.backward(grad)
             layer.update(self.reg_param, self.learning_rate)
 
-    def train(self, data, n_epochs, batch_size):
+    def fit(self, data, n_epochs, batch_size):
         X_train, _, y_train, _ = data
 
         n_batches = X_train.shape[0] // batch_size
@@ -128,6 +128,8 @@ class FFNN:
             self.eval(data)
             train_acc, test_acc = self.hist["Train MSE"][-1], self.hist["Test MSE"][-1]
             t.set_postfix(train_acc=train_acc, test_acc=test_acc)
+
+        return self
 
     def score(self, X, y):
         if self.type == "regression":
