@@ -77,9 +77,11 @@ class Output(Layer):
 
 
 class FFNN:
-    def __init__(self, p, reg_param):
-        self.reg_param = reg_param
+    def __init__(self, p, reg_param, activation="relu", weight_init="xavier"):
         self.p = p
+        self.reg_param = reg_param
+        self.activation = activation
+        self.weight_init = weight_init
         self.type = (
             "regression" if self.p[-1] == 1 else "classification"
         )
@@ -88,14 +90,17 @@ class FFNN:
     def set_layers(self):
         self.layers = []
         for i in range(len(self.p) - 2):
-            self.layers.append(Hidden(self.p[i], self.p[i + 1], "relu", "xavier"))
-
+            self.layers.append(
+                Hidden(self.p[i], self.p[i + 1], self.activation, self.weight_init),
+            )
         # Output layer activation depends on problem type.
         if self.type == "regression":
             out_activation = "identity"
         else:
             out_activation = "softmax"
-        self.layers.append(Output(self.p[-2], self.p[-1], out_activation, "xavier"))
+        self.layers.append(
+            Output(self.p[-2], self.p[-1], out_activation, self.weight_init),
+        )
 
     def predict(self, input):
         for layer in self.layers:
