@@ -6,9 +6,9 @@ import numpy as np
 
 from tqdm import trange
 
-from activations import identity, sigmoid, relu, leaky_relu, softmax
-from weight_inits import xavier, kaiming
-from utils import mse, acc, ohe
+from src.activations import identity, sigmoid, relu, leaky_relu, softmax
+from src.weight_inits import xavier, kaiming
+from src.utils import mse, acc, ohe
 
 
 class Layer:
