@@ -8,13 +8,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-sys.path.append(
-    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
-)
-from linear_regression import OLS
-from franke import franke_function, sample_franke, plot_franke
-from utils import plot_3d, design_matrix
-from utils import LEGEND_SIZE, LABEL_SIZE
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from src.linear_regression import OLS
+from src.franke import franke_function, sample_franke, plot_franke
+from src.utils import plot_3d, design_matrix
+from src.utils import LEGEND_SIZE, LABEL_SIZE
 
 np.random.seed(2021)
 
