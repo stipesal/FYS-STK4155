@@ -100,6 +100,13 @@ def mse(y_pred, y_true):
     return ((y_pred - y_true) ** 2).sum() / y_true.size
 
 
+def r2(y_pred, y_true):
+    """Returns the R2 score between predictions and true value."""
+    u = ((y_true - y_pred)** 2).sum()
+    v = ((y_true - y_true.mean()) ** 2).sum()
+    return 1. - u / v
+
+
 def acc(y_pred, y_true):
     """Returns the accuracy between predictions and true labels."""
     return (y_pred.argmax(axis=-1) == y_true).sum() / y_true.size

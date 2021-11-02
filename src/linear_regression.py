@@ -5,8 +5,8 @@ Linear Regression: OLS, Ridge and Lasso regression.
 import numpy as np
 from scipy.stats import t
 from sklearn.linear_model import Lasso as Lasso_
-from sklearn.metrics import mean_squared_error as mse
-from sklearn.metrics import r2_score as r2
+
+from src.utils import mse, r2
 
 
 def sgd(data, n_epochs=100, batch_size=32, lr=1e-3, reg=0.):
