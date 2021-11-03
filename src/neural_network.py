@@ -6,7 +6,7 @@ import numpy as np
 
 from tqdm import trange
 
-from src.activations import identity, sigmoid, relu, leaky_relu, softmax
+from src.activations import *
 from src.weight_inits import xavier, kaiming
 from src.utils import mse, acc, ohe
 
