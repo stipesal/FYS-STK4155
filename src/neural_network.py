@@ -102,13 +102,18 @@ class FFNN:
             Output(self.p[-2], self.p[-1], out_activation, self.weight_init),
         )
 
-    def predict(self, input):
+    def predict_proba(self, input):
+        res = input
         for layer in self.layers:
-            input = layer.forward(input)
-        return input
+            res = layer.forward(res)
+        return res
+
+    def predict(self, input):
+        res = self.predict_proba(input)
+        return res if self.type == "regression" else res.argmax(axis=-1)
 
     def backprop(self, X, y):
-        y_pred = self.predict(X)
+        y_pred = self.predict_proba(X)
 
         grad = self.layers[-1].backward(y_pred, y)
         for layer in reversed(self.layers[:-1]):
