@@ -58,7 +58,7 @@ if SHOW_PLOTS:
     plt.hlines(skl_acc, 0, n_epochs, colors="k", linestyles="dashed", label="Scikit-Learn")
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel("accuracy", size=LABEL_SIZE)
-    plt.legend()
+    plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
         if not os.path.exists("project2/figs/"):
             os.makedirs("project2/figs/")
@@ -91,7 +91,7 @@ if SHOW_PLOTS:
 
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel("accuracy", size=LABEL_SIZE)
-    plt.legend()
+    plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
         plt.savefig("project2/figs/cancer_ffnn_vs_logreg.pdf", bbox_inches='tight', format="pdf")
     plt.show()

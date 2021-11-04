@@ -118,9 +118,9 @@ if SHOW_PLOTS:
         plt.plot(net.hist["Train"], color=clrs[i], label=weight_init.capitalize())
         plt.plot(net.hist["Test"], color=clrs[i], linestyle="dashed")
 
-    plt.xlabel("epoch")
-    plt.ylabel("MSE")
-    plt.legend()
+    plt.xlabel("epoch", size=LABEL_SIZE)
+    plt.ylabel("MSE", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("project2/figs/weights_fitting.pdf", bbox_inches='tight', format="pdf")

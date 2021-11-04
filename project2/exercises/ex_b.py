@@ -62,9 +62,9 @@ if SHOW_PLOTS:
     plt.plot(net.hist["Test"], "C0--")
     plt.plot(net_poly.hist["Train"], "C1", label="Polynomial")
     plt.plot(net_poly.hist["Test"], "C1--")
-    plt.xlabel("epoch")
-    plt.ylabel("MSE")
-    plt.legend()
+    plt.xlabel("epoch", size=LABEL_SIZE)
+    plt.ylabel("MSE", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
         if not os.path.exists("project2/figs/"):
             os.makedirs("project2/figs/")
@@ -93,8 +93,8 @@ if SHOW_PLOTS:
     ext = [reg_params.min(), reg_params.max(), learning_rates.min(), learning_rates.max()]
     plt.imshow(test_mse, extent=ext, aspect="auto", cmap="coolwarm", origin="lower")
     plt.colorbar()
-    plt.xlabel(r"regularization $\lambda$")
-    plt.ylabel(r"learning rate")
+    plt.xlabel(r"regularization $\lambda$", size=LABEL_SIZE)
+    plt.ylabel(r"learning rate", size=LABEL_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("project2/figs/gs_nn_lr_reg.pdf", bbox_inches='tight', format="pdf")

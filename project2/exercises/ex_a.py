@@ -144,8 +144,8 @@ if SHOW_PLOTS:
     plt.loglog(learning_rates, test_mse, label="test")
     plt.loglog(learning_rates, 1e-2 * learning_rates ** -0.75, "k--", label="order 3/4")
     plt.title("RIDGE: MSE vs. learning rate")
-    plt.xlabel("learning rate")
-    plt.ylabel("MSE")
+    plt.xlabel("learning rate", size=LABEL_SIZE)
+    plt.ylabel("MSE", size=LABEL_SIZE)
     plt.legend()
     if SAVE_FIGS:
         plt.savefig("project2/figs/hyper_lr.pdf", bbox_inches='tight', format="pdf")
