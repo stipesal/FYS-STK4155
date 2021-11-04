@@ -127,7 +127,7 @@ class FFNN:
         n_batches = X_train.shape[0] // batch_size
         idx = np.arange(X_train.shape[0])
 
-        self.hist = {"Train MSE": [], "Test MSE": []}
+        self.hist = {"Train": [], "Test": []}
         if verbose: t = trange(n_epochs, desc="Train")
         else: t = range(n_epochs)
         for _ in t:
@@ -137,8 +137,8 @@ class FFNN:
                 self.backprop(X_train[batch], y_train[batch])
 
             self.eval(data)
-            train_acc, test_acc = self.hist["Train MSE"][-1], self.hist["Test MSE"][-1]
-            if verbose: t.set_postfix(train_acc=train_acc, test_acc=test_acc)
+            train_, test_ = self.hist["Train"][-1], self.hist["Test"][-1]
+            if verbose: t.set_postfix(train=train_, test=test_)
 
         return self
 
@@ -150,5 +150,5 @@ class FFNN:
 
     def eval(self, data):
         X_train, X_test, y_train, y_test = data
-        self.hist["Train MSE"].append(self.score(X_train, y_train))
-        self.hist["Test MSE"].append(self.score(X_test, y_test))
+        self.hist["Train"].append(self.score(X_train, y_train))
+        self.hist["Test"].append(self.score(X_test, y_test))

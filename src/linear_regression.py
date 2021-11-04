@@ -20,7 +20,7 @@ def sgd(data, n_epochs=100, batch_size=32, lr=1e-3, reg=0.):
     f = lambda beta, X, y: ((X @ beta - y) ** 2).sum() / X.shape[0] + reg * (beta ** 2).sum()
     df = lambda beta, X, y: 2 / X.shape[0] * X.T @ (X @ beta - y) + 2 * reg * beta
 
-    hist = {"Train MSE": [], "Test MSE": []}
+    hist = {"Train": [], "Test": []}
     for _ in range(n_epochs):
         np.random.shuffle(idx)
 
@@ -28,8 +28,8 @@ def sgd(data, n_epochs=100, batch_size=32, lr=1e-3, reg=0.):
             batch = idx[b * batch_size: (b + 1) * batch_size]
             beta -= lr * df(beta, X_train[batch], y_train[batch])
 
-        hist["Train MSE"].append(f(beta, X_train, y_train))
-        hist["Test MSE"].append(f(beta, X_test, y_test))
+        hist["Train"].append(f(beta, X_train, y_train))
+        hist["Test"].append(f(beta, X_test, y_test))
     return beta, hist
 
 
