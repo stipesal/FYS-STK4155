@@ -7,6 +7,7 @@ from numba import jit
 import numpy as np
 
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.utils import resample
 
 
@@ -117,3 +118,10 @@ def ohe(labels, n_classes):
     ohe = np.zeros((labels.size, n_classes))
     ohe[np.arange(labels.size), labels] = 1.
     return ohe
+
+
+def scale(X_train, X_test):
+    scaler = StandardScaler().fit(X_train)
+    X_train = scaler.transform(X_train)
+    X_test = scaler.transform(X_test)
+    return X_train, X_test, scaler
