@@ -109,7 +109,7 @@ def r2(y_pred, y_true):
 
 def acc(y_pred, y_true):
     """Returns the accuracy between predictions and true labels."""
-    return (y_pred.argmax(axis=-1) == y_true).sum() / y_true.size
+    return (y_pred == y_true).mean()
 
 
 def ohe(labels, n_classes):
