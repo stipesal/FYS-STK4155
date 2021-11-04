@@ -1,5 +1,5 @@
 """
-FYS-STK4155 @UiO, PROJECT II.
+FYS-STK4155 @UiO
 Logistic regression.
 """
 import numpy as np

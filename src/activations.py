@@ -1,5 +1,5 @@
 """
-FYS-STK4155 @UiO, PROJECT II.
+FYS-STK4155 @UiO
 Activation functions.
 """
 import numpy as  np

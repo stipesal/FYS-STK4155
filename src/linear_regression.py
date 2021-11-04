@@ -1,5 +1,5 @@
 """
-FYS-STK4155 @UiO, PROJECT I.
+FYS-STK4155 @UiO
 Linear Regression: OLS, Ridge and Lasso regression.
 """
 import numpy as np

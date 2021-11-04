@@ -1,5 +1,5 @@
 """
-FYS-STK4155 @UiO, PROJECT I.
+FYS-STK4155 @UiO
 Franke's function [*]: Evaluation, sampling, and plotting.
 
 [*] http://www.dtic.mil/dtic/tr/fulltext/u2/a081688.pdf
