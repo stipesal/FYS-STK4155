@@ -12,7 +12,11 @@ def identity():
 
 
 def sigmoid():
-    f = lambda x: np.exp(x) / (1 + np.exp(x))
+    f = lambda x: np.where(
+        x >= 0,
+        1 / (1 + np.exp(-x)),
+        np.exp(x) / (1 + np.exp(x)),
+    )
     df = lambda x: f(x) * (1 - f(x))
     return f, df
 
