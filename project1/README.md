@@ -1,4 +1,4 @@
-# Project 1 - Regression analysis and resampling methods.
+# Project 1 - Regression analysis and resampling methods
 
 ## Abstract
 
@@ -7,11 +7,11 @@ We use ordinary least squares, Ridge, and Lasso Regression to fit Franke's funct
 [^1]: https://www.sfu.ca/~ssurjano/franke2d.html
 
 
-## Code structure.
+## Code structure
 
 The main functions are in the `src` folder, including
 - `linear_regression.py` - An abstract base class `LinearRegression` provides the foundations for the three slightly more specific models `OLS`, `Ridge`, and `Lasso`.
-- `franke.py` - Evaluation, sampling and plotting the so-called Franke's function. [^1]
+- `franke.py` - Evaluation, sampling and plotting the so-called Franke's function.
 - `utils.py` - Polynomial features, bias-variance analysis, bootstraping, and cross-validation.
 
 The actual solutions to the exercises can be found in the `exercises` directory, where the functions from `src` are imported. 
@@ -19,7 +19,7 @@ The order `aux_scripts` contains helper scripts for creating a few additional fi
 The files in `exercises` and `aux_scripts` both produce figures that are placed in a new local `figs` folder.
 
 
-## Reproduction.
+## Reproduction
 To play around with the programmes yourself, please clone the repository
 
 ```
