@@ -32,10 +32,10 @@ def sgd(data, n_epochs, batch_size, lr, reg):
             batch = idx[b * batch_size: (b + 1) * batch_size]
             beta -= lr * df(beta, X_train[batch], y_train[batch])
 
-        t.set_postfix(test_acc = acc(sigmoid(X_test @ beta) > 0.5, y_test))
+        t.set_postfix(test_acc = acc(X_test @ beta > 0., y_test))
 
-        hist["Train"].append(acc(sigmoid(X_train @ beta) > 0.5, y_train))
-        hist["Test"].append(acc(sigmoid(X_test @ beta) > 0.5, y_test))
+        hist["Train"].append(acc(X_train @ beta > 0., y_train))
+        hist["Test"].append(acc(X_test @ beta > 0., y_test))
     return beta, hist
 
 
@@ -45,7 +45,7 @@ class LogisticRegression:
         return self
 
     def predict(self, X):
-        return sigmoid(X @ self.beta) > 0.5
+        return X @ self.beta > 0
 
     def score(self, X, y):
         self.acc_test = acc(self.predict(X), y)
