@@ -85,6 +85,7 @@ class FFNN:
         self.type = (
             "regression" if self.p[-1] == 1 else "classification"
         )
+        self.score_ = mse if self.type == "regression" else acc
         self.set_layers()
 
     def set_layers(self):
@@ -143,10 +144,7 @@ class FFNN:
         return self
 
     def score(self, X, y):
-        if self.type == "regression":
-            return mse(self.predict(X), y)
-        else:
-            return acc(self.predict(X), y)
+        return self.score_(self.predict(X), y)
 
     def eval(self, data):
         X_train, X_test, y_train, y_test = data
