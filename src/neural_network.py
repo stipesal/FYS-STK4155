@@ -137,10 +137,9 @@ class FFNN:
                 batch = idx[b * batch_size: (b + 1) * batch_size]
                 self.backprop(X_train[batch], y_train[batch])
 
-            self.eval(data)
-            train_, test_ = self.hist["Train"][-1], self.hist["Test"][-1]
-            if verbose: t.set_postfix(train=train_, test=test_)
-
+            train_score, test_score = self.eval(data)
+            if verbose:
+                t.set_postfix(train=train_score, test=test_score)
         return self
 
     def score(self, X, y):
@@ -148,5 +147,8 @@ class FFNN:
 
     def eval(self, data):
         X_train, X_test, y_train, y_test = data
-        self.hist["Train"].append(self.score(X_train, y_train))
-        self.hist["Test"].append(self.score(X_test, y_test))
+        train_score = self.score(X_train, y_train)
+        test_score = self.score(X_test, y_test)
+        self.hist["Train"].append(train_score)
+        self.hist["Test"].append(test_score)
+        return train_score, test_score

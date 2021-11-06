@@ -32,10 +32,13 @@ def sgd(data, n_epochs, batch_size, lr, reg):
             batch = idx[b * batch_size: (b + 1) * batch_size]
             beta -= lr * df(beta, X_train[batch], y_train[batch])
 
-        t.set_postfix(test_acc = acc(X_test @ beta > 0., y_test))
+        train_score = acc(X_train @ beta > 0., y_train)
+        test_score = acc(X_test @ beta > 0., y_test)
+        hist["Train"].append(train_score)
+        hist["Test"].append(test_score)
 
-        hist["Train"].append(acc(X_train @ beta > 0., y_train))
-        hist["Test"].append(acc(X_test @ beta > 0., y_test))
+        t.set_postfix(test=test_score)
+
     return beta, hist
 
 
