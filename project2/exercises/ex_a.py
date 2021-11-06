@@ -146,7 +146,7 @@ if SHOW_PLOTS:
     plt.title("RIDGE: MSE vs. learning rate")
     plt.xlabel("learning rate", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
-    plt.legend()
+    plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
         plt.savefig("project2/figs/hyper_lr.pdf", bbox_inches='tight', format="pdf")
     plt.show()
