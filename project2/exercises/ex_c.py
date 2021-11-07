@@ -75,7 +75,7 @@ if SHOW_PLOTS:
     colors = iter([f"C{i}" for i in range(len(nets))])
     for net in nets:
         clr = next(colors)
-        plt.semilogy(net.hist["Train"], color=clr, label=net.activation)
+        plt.semilogy(net.hist["Train"], color=clr, label=net.activation.replace("_", " ").capitalize())
         plt.semilogy(net.hist["Test"], "--", color=clr)
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
