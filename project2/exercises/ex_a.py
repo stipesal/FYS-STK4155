@@ -74,7 +74,7 @@ if SHOW_PLOTS:
     colors_sgd = iter(["C0", "C1"])
 
     for name, model in models.items():
-        if name in ["OLS", "Ridge", "sklearn"]:
+        if name in ["OLS", "Ridge", "Scikit-Learn"]:
             clr = next(colors)
             mse_ = mse(model.predict(X_test), y_test)
             plt.hlines(mse_, 0, n_epochs - 1, colors=clr, linestyles="dotted", lw=2., label=name)
