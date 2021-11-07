@@ -11,8 +11,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.utils import resample
 
 
-LEGEND_SIZE = 12
-LABEL_SIZE = 12
+LEGEND_SIZE = 14
+LABEL_SIZE = 14
 
 
 def plot_3d():
