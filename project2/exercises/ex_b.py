@@ -139,7 +139,7 @@ if SHOW_PLOTS:
         else:
             clr = next(colors_sgd)
             plt.semilogy(model.hist["Train"], color=clr, label=name)
-            plt.semilogy(model.hist["Test"], "--", color=clr)
+            plt.semilogy(model.hist["Test"], "--", lw=1., color=clr)
 
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
