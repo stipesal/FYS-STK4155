@@ -57,7 +57,7 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        if not os.path.exists("figs/"):
+        if not os.path.exists("project1/figs/"):
             os.makedirs("figs/")
-        plt.savefig("figs/bs_vs_cv.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/bs_vs_cv.pdf", bbox_inches='tight', format="pdf")
     plt.show()

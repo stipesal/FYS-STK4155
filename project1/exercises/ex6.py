@@ -54,9 +54,9 @@ if SHOW_PLOTS:
     plt.ylabel(r"$Y$", size=LABEL_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        if not os.path.exists("figs/"):
+        if not os.path.exists("project1/figs/"):
             os.makedirs("figs/")
-        plt.savefig("figs/sampled_terrain.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/sampled_terrain.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -95,7 +95,7 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/ols_vs_ridge_vs_lasso.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/ols_vs_ridge_vs_lasso.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 best_idx = np.unravel_index(np.argmin(mse), mse.shape)
@@ -133,5 +133,5 @@ if SHOW_PLOTS:
     axs[1].set_title("Prediction.")
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/terrain_pred.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/terrain_pred.pdf", bbox_inches='tight', format="pdf")
     plt.show()

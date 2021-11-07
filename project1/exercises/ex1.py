@@ -38,9 +38,9 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        if not os.path.exists("figs/"):
+        if not os.path.exists("project1/figs/"):
             os.makedirs("figs/")
-        plt.savefig("figs/sampling_franke.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/sampling_franke.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -69,7 +69,7 @@ if SHOW_PLOTS:
         axs[i].set_ylabel(r"$y$", size=LABEL_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/prediction_2d.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/prediction_2d.pdf", bbox_inches='tight', format="pdf")
     plt.show()
     # 3D.
     ax = plot_3d()
@@ -84,7 +84,7 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/prediction_3d.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/prediction_3d.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -106,5 +106,5 @@ if SHOW_PLOTS:
     plt.xlabel(r"$j$", size=LABEL_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/confidence_intervals.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/confidence_intervals.pdf", bbox_inches='tight', format="pdf")
     plt.show()

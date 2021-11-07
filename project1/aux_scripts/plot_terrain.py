@@ -42,7 +42,7 @@ for i in range(len(axs)):
     axs[i].set_xlabel(r"$X$", size=LABEL_SIZE)
     axs[i].set_ylabel(r"$Y$", size=LABEL_SIZE)
 plt.tight_layout()
-if not os.path.exists("figs/"):
+if not os.path.exists("project1/figs/"):
     os.makedirs("figs/")
-plt.savefig("figs/terrain.pdf", bbox_inches='tight', format="pdf")
+plt.savefig("project1/figs/terrain.pdf", bbox_inches='tight', format="pdf")
 plt.show()

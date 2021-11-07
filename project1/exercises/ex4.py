@@ -61,9 +61,9 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        if not os.path.exists("figs/"):
+        if not os.path.exists("project1/figs/"):
             os.makedirs("figs/")
-        plt.savefig("figs/ridge_vs_ols.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/ridge_vs_ols.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -103,5 +103,5 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/bias_variance_ridge.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/bias_variance_ridge.pdf", bbox_inches='tight', format="pdf")
     plt.show()

@@ -19,7 +19,7 @@ surf._facecolors2d = surf._facecolor3d
 surf._edgecolors2d = surf._edgecolor3d
 plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
-if not os.path.exists("figs/"):
+if not os.path.exists("project1/figs/"):
     os.makedirs("figs/")
-plt.savefig("figs/franke.pdf", bbox_inches='tight', format="pdf")
+plt.savefig("project1/figs/franke.pdf", bbox_inches='tight', format="pdf")
 plt.show()

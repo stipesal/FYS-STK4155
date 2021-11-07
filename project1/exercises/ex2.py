@@ -60,9 +60,9 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        if not os.path.exists("figs/"):
+        if not os.path.exists("project1/figs/"):
             os.makedirs("figs/")
-        plt.savefig("figs/mse_r2_franke.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/mse_r2_franke.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -85,7 +85,7 @@ if SHOW_PLOTS:
     plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
-        plt.savefig("figs/bias_variance_degree.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/bias_variance_degree.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -114,5 +114,5 @@ if SHOW_PLOTS:
     plt.xlabel(r"Sample size $N$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
-        plt.savefig("figs/bias_variance_sample_size.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/bias_variance_sample_size.pdf", bbox_inches='tight', format="pdf")
     plt.show()

@@ -15,7 +15,7 @@ plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
 plt.ylabel("Number of monomials", size=LABEL_SIZE)
 plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
-if not os.path.exists("figs/"):
+if not os.path.exists("project1/figs/"):
     os.makedirs("figs/")
-plt.savefig("figs/number_of_monomials.pdf", bbox_inches='tight', format="pdf")
+plt.savefig("project1/figs/number_of_monomials.pdf", bbox_inches='tight', format="pdf")
 plt.show()

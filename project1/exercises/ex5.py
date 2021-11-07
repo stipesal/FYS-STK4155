@@ -63,9 +63,9 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        if not os.path.exists("figs/"):
+        if not os.path.exists("project1/figs/"):
             os.makedirs("figs/")
-        plt.savefig("figs/lasso_vs_ols.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/lasso_vs_ols.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -105,7 +105,7 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/bias_variance_lasso.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/bias_variance_lasso.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 
@@ -133,5 +133,5 @@ if SHOW_PLOTS:
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
-        plt.savefig("figs/regression_coeffs.pdf", bbox_inches='tight', format="pdf")
+        plt.savefig("project1/figs/regression_coeffs.pdf", bbox_inches='tight', format="pdf")
     plt.show()
