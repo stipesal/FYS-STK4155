@@ -155,7 +155,7 @@ if SHOW_PLOTS:
 lr = 1e-2
 reg_param = 1e-3
 
-epochs = np.arange(1, 100, 4)
+epochs = np.arange(10, 100, 4)
 batch_sizes = np.arange(1, 100, 4)
 
 test_mse = np.zeros((epochs.size, batch_sizes.size))
