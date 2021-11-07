@@ -81,7 +81,6 @@ if SHOW_PLOTS:
         label="Prediction",
         alpha=.3,
     )
-    ax.set_title("Predicting Franke's function.")
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
