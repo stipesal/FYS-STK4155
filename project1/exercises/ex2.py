@@ -82,7 +82,6 @@ if SHOW_PLOTS:
     plt.plot(err, "k-o", label='Error')
     plt.plot(bias, "r-o", label='Bias^2')
     plt.plot(var, "b-o", label='Variance')
-    plt.title("Bias-variance tradeoff.")
     plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:
@@ -112,7 +111,6 @@ if SHOW_PLOTS:
     plt.loglog(sample_sizes, err, "k", label='Error')
     plt.loglog(sample_sizes, bias, "r", label='Bias^2')
     plt.loglog(sample_sizes, var, "b", label='Variance')
-    plt.title("Bias-variance tradeoff.")
     plt.xlabel(r"Sample size $N$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:

@@ -58,7 +58,6 @@ if SHOW_PLOTS:
     plt.plot(test_mse_ridge, "r--o", label="Ridge - Test")
     plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
-    plt.title("Loss. OLS vs. Ridge.")
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
@@ -100,7 +99,6 @@ if SHOW_PLOTS:
     plt.loglog(lambdas, err, "k", label='Error')
     plt.loglog(lambdas, bias, "r", label='Bias^2')
     plt.loglog(lambdas, var, "b", label='Variance')
-    plt.title("Bias-variance tradeoff. Ridge.")
     plt.xlabel(r"Regularization $\lambda$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()

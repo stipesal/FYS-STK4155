@@ -49,7 +49,6 @@ for eps in noise:
 plt.loglog(noise, train_mse, label="Train MSE")
 plt.loglog(noise, test_mse, label="Test MSE")
 plt.loglog(noise, .1 * noise**2, "k--", label="order 2")
-plt.title(r"Effect of white noise $\varepsilon \sim N(0, \sigma^2)$.")
 plt.xlabel(r"Variance $\sigma^2$", size=LABEL_SIZE)
 plt.ylabel("MSE", size=LABEL_SIZE)
 plt.legend(fontsize=LEGEND_SIZE)

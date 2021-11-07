@@ -16,7 +16,6 @@ ax.plot_surface(
     x, y, franke_function(x, y),
     cmap="twilight",
 )
-plt.title("Franke's function.")
 plt.tight_layout()
 if not os.path.exists("figs/"):
     os.makedirs("figs/")

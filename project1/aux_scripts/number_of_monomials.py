@@ -15,7 +15,6 @@ plt.plot(degrees, degrees + 1, "-o", label="Homogen")
 plt.plot(degrees, (degrees + 1) * (degrees + 2) / 2,   "-o", label="Inhomogen")
 plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
 plt.ylabel("Number of monomials", size=LABEL_SIZE)
-plt.title("Comparison of number of monomials.")
 plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
 if not os.path.exists("figs/"):

@@ -60,7 +60,6 @@ if SHOW_PLOTS:
     plt.plot(test_mse_lasso, "r--o", label="Lasso - Test")
     plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
-    plt.title("Loss. OLS vs. Lasso.")
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
@@ -102,7 +101,6 @@ if SHOW_PLOTS:
     plt.loglog(lambdas, err, "k", label='Error')
     plt.loglog(lambdas, bias, "r", label='Bias^2')
     plt.loglog(lambdas, var, "b", label='Variance')
-    plt.title("Bias-variance tradeoff. Lasso.")
     plt.xlabel(r"Regularization $\lambda$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
@@ -130,7 +128,6 @@ if SHOW_PLOTS:
     plt.semilogx(lambdas, betas[1, :, 0], "b", label="Lasso")
     plt.semilogx(lambdas, betas[1, :, 1:], "b")
     plt.hlines(ols.beta, lambdas[0], lambdas[-1], colors="k", lw=1, linestyle="dashed", label="OLS")
-    plt.title("Regression coefficients.")
     plt.xlabel(r"Regularization $\lambda$", size=LABEL_SIZE)
     plt.ylabel(r"$\beta_j$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)

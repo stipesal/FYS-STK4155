@@ -52,7 +52,6 @@ if SHOW_PLOTS:
     plt.plot(boot[:, 1], "r-o", label="BS - Test")
     plt.plot(cv[:, 0], "b--o", label="CV - Train")
     plt.plot(cv[:, 1], "b-o", label="CV - Test")
-    plt.title("Bootstrap vs. Cross-validation.")
     plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)

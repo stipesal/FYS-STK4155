@@ -52,7 +52,6 @@ if SHOW_PLOTS:
     plt.scatter(*x_test.T, s=1, c="r", label="test")
     plt.xlabel(r"$X$", size=LABEL_SIZE)
     plt.ylabel(r"$Y$", size=LABEL_SIZE)
-    plt.title("Terrain over Norway.")
     plt.tight_layout()
     if SAVE_FIGS:
         if not os.path.exists("figs/"):
@@ -93,7 +92,6 @@ if SHOW_PLOTS:
     plt.semilogy(range(MAX_DEGREE), mse[2], "b", lw=2, label="Lasso")
     plt.xlabel(r"Polynomial degree $d$", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
-    plt.title("Loss. OLS vs. Ridge vs. Lasso.")
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:

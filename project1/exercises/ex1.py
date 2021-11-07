@@ -35,7 +35,6 @@ if SHOW_PLOTS:
     plot_franke(ax)
     ax.scatter3D(*x_train.T, y_train, label="Train data")
     ax.scatter3D(*x_test.T, y_test, label="Test data")
-    ax.set_title("Sampling Franke's function.")
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
@@ -103,7 +102,6 @@ print(f"R2 (Test): {model.r2_test:.4f}")
 if SHOW_PLOTS:
     devs = .5 * (model.CI[:, 1] - model.CI[:, 0])
     plt.errorbar(range(len(model.beta)), model.beta, yerr=devs, fmt='o')
-    plt.title(r"OLS estimation $\beta$.")
     plt.xticks(np.arange(len(model.beta)))
     plt.ylabel(r"$\beta_j \pm \hat{\sigma} \sqrt{(X^{\top}X)^{-1}_{jj}}$", size=LABEL_SIZE)
     plt.xlabel(r"$j$", size=LABEL_SIZE)
