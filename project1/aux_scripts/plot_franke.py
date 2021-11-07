@@ -3,11 +3,9 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-sys.path.append(
-    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
-)
-from utils import plot_3d
-from franke import franke_function
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from src.utils import plot_3d
+from src.franke import franke_function
 
 ax = plot_3d()
 x = np.linspace(0, 1, 100)

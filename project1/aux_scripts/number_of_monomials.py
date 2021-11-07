@@ -3,10 +3,8 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-sys.path.append(
-    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
-)
-from utils import LEGEND_SIZE, LABEL_SIZE
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from src.utils import LEGEND_SIZE, LABEL_SIZE
 
 MAX_DEGREE = 20
 degrees = np.arange(MAX_DEGREE)

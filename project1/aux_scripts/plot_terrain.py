@@ -5,21 +5,17 @@ import numpy as np
 from imageio import imread
 from sklearn.model_selection import train_test_split
 
-sys.path.append(
-    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
-)
-from utils import LABEL_SIZE
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from src.utils import LABEL_SIZE
 
-sys.path.append(
-    os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src')
-)
+
 np.random.seed(2021)
 
 TEST_SIZE = .2
 
 
 # LOAD TERRAIN.
-terrain1 = imread("data/SRTM_data_Norway_2.tif")
+terrain1 = imread("project1/data/SRTM_data_Norway_2.tif")
 m, n = terrain1.shape
 
 
