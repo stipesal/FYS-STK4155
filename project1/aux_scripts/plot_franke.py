@@ -4,16 +4,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-from src.utils import plot_3d
+from src.utils import LEGEND_SIZE, plot_3d
 from src.franke import franke_function
 
 ax = plot_3d()
 x = np.linspace(0, 1, 100)
 x, y = np.meshgrid(x, x)
-ax.plot_surface(
+surf = ax.plot_surface(
     x, y, franke_function(x, y),
     cmap="twilight",
+    label="Franke's function"
 )
+surf._facecolors2d = surf._facecolor3d
+surf._edgecolors2d = surf._edgecolor3d
+plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
 if not os.path.exists("figs/"):
     os.makedirs("figs/")
