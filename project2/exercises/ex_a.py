@@ -115,7 +115,7 @@ if SHOW_PLOTS:
     plt.imshow(test_mse, extent=ext, aspect="auto", cmap="coolwarm", origin="lower")
     plt.colorbar()
     plt.xlabel(r"regularization $\lambda$", size=LABEL_SIZE)
-    plt.ylabel(r"learning rate", size=LABEL_SIZE)
+    plt.ylabel(r"learning rate $\gamma$", size=LABEL_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("project2/figs/gs_ridge_lr_reg.pdf", bbox_inches='tight', format="pdf")
@@ -143,7 +143,7 @@ if SHOW_PLOTS:
     plt.loglog(learning_rates, train_mse, label="train")
     plt.loglog(learning_rates, test_mse, label="test")
     plt.loglog(learning_rates, 1e-2 * learning_rates ** -0.75, "k--", label="order 3/4")
-    plt.xlabel("learning rate", size=LABEL_SIZE)
+    plt.xlabel(r"learning rate $\gamma$", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     if SAVE_FIGS:

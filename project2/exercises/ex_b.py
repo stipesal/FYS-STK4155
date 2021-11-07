@@ -94,7 +94,7 @@ if SHOW_PLOTS:
     plt.imshow(test_mse, extent=ext, aspect="auto", cmap="coolwarm", origin="lower")
     plt.colorbar()
     plt.xlabel(r"regularization $\lambda$", size=LABEL_SIZE)
-    plt.ylabel(r"learning rate", size=LABEL_SIZE)
+    plt.ylabel(r"learning rate $\gamma$", size=LABEL_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
         plt.savefig("project2/figs/gs_nn_lr_reg.pdf", bbox_inches='tight', format="pdf")
