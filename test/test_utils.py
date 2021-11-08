@@ -10,8 +10,10 @@ from sklearn.model_selection import cross_validate
 from sklearn.datasets import make_regression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, accuracy_score
 
 from src.utils import design_matrix, bias_variance_analysis, cross_validation
+from src.utils import mse, acc
 from src.linear_regression import OLS
 
 
@@ -72,3 +74,22 @@ def test_cross_validation(data):
 
     # Check test MSE for every fold.
     assert np.allclose(model.cv["Test MSE"], -skl_cv["test_score"])
+
+
+metrics = [
+    (mse, mean_squared_error),
+    (acc, accuracy_score),
+]
+@pytest.mark.parametrize("metric, metric_skl", metrics)
+def test_metric(metric, metric_skl):
+    """
+    Tests the mean squared error and accuracy
+    methods by comparing to Scikit-Learn's.
+    """
+    n = 1000
+    n_classes = 10
+
+    y_true = np.random.randint(n_classes, size=n)
+    y_pred = np.random.randint(n_classes, size=n)
+
+    assert metric(y_pred, y_true) == metric_skl(y_pred, y_true)
