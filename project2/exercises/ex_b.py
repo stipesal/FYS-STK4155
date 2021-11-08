@@ -48,7 +48,6 @@ data = x_train, x_test, y_train, y_test
 
 
 # FEATURES. 2D vs. Polynomial.
-network_structure = [2, 10, 1]
 n_epochs = 500
 batch_size = 32
 lr = 1e-3
