@@ -1,5 +1,5 @@
 """
-FYS-STK4155 @UiO, PROJECT II. 
+FYS-STK4155 @UiO, PROJECT II.
 Exercise e): Logistic Regression
 """
 import os
@@ -7,6 +7,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import LogisticRegression as SKL
 from sklearn.datasets import load_breast_cancer
 
@@ -67,28 +68,42 @@ if SHOW_PLOTS:
 
 
 # FFNN vs. Logistic Regression.
-struct = [X_train.shape[1], 50, 2]
+struct = [X_train.shape[1], 20, 2]
 n_epochs = 50
 batch_size = 8
 learning_rate = 5e-2
-reg_param = 5e-3
+reg_param = 1e-3
 
 ffnn = FFNN(struct, reg_param).fit(data, n_epochs, batch_size, learning_rate)
+skl_net = MLPClassifier().fit(X_train, y_train)
 logreg = LogisticRegression().fit(data, n_epochs, batch_size, learning_rate, reg_param)
+skl_logreg = SKL(fit_intercept=False).fit(X_train, y_train)
 
-ffnn_acc = acc(ffnn.predict(X_test), y_test)
-logreg_acc = acc(logreg.predict(X_test), y_test)
-print("FFNN:", acc(ffnn.predict(X_test), y_test))
-print("Log. Reg.:", acc(logreg.predict(X_test), y_test))
+models = {
+    "FFNN": ffnn,
+    "Log. regression": logreg,
+    "FFNN (Scikit)": skl_net,
+    "Log. regression (Scikit)": skl_logreg,
+}
+for name, model in models.items():
+    acc_ = acc(model.predict(X_test), y_test)
+    print(f"{name}: {acc_:.4f}")
 
 if SHOW_PLOTS:
     clrs = iter(["C0", "C1"])
-
-    for name, model in {"FFNN": ffnn, "Log. Regression": logreg}.items():
+    for i, (name, model) in enumerate(models.items()):
+        if i == 2:
+            break
         clr = next(clrs)
-        plt.plot(model.hist["Train"], color=clr, label=name)
-        plt.plot(model.hist["Test"], color=clr, linestyle="--")
+        if name in ["FFNN", "Log. regression"]:
+            plt.plot(model.hist["Train"], color=clr, label=name)
+            plt.plot(model.hist["Test"], color=clr, linestyle="--")
 
+            model_ = models[name + " (Scikit)"]
+            test_acc = acc(model_.predict(X_test), y_test)
+            plt.hlines(test_acc, 0, n_epochs, color=clr, linestyles="dotted", label=name + " (Scikit)")
+
+    plt.ylim(.875, 1.)
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel("accuracy", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
