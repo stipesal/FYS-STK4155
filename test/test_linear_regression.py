@@ -1,5 +1,5 @@
 """
-FYS-STK4155 @UiO, PROJECT I.
+FYS-STK4155 @UiO
 Testing: Linear Regression.
 """
 import pytest
