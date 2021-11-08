@@ -87,7 +87,7 @@ models = {
 }
 for name, model in models.items():
     acc_ = acc(model.predict(X_test), y_test)
-    print(f"{name}: {acc_:.4f}")
+    print(f"{name}: {acc_:.6f}")
 
 if SHOW_PLOTS:
     clrs = iter(["C0", "C1"])
