@@ -16,7 +16,6 @@ digits = load_digits()
 X = digits.images
 X = X.reshape((X.shape[0], -1))
 y = digits.target
-# data = train_test_split(X, y, test_size=.2)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.2)
 X_train, X_test, _ = scale(X_train, X_test)
 data = X_train, X_test, y_train, y_test
