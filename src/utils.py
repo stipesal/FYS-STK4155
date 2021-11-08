@@ -121,6 +121,7 @@ def ohe(labels, n_classes):
 
 
 def scale(X_train, X_test):
+    """Returns normalized arrays fitted using `X_train`."""
     scaler = StandardScaler().fit(X_train)
     X_train = scaler.transform(X_train)
     X_test = scaler.transform(X_test)
