@@ -50,6 +50,7 @@ if SHOW_PLOTS:
         plt.plot(x, f(x), label=func.replace("_", " ").capitalize())
     plt.xlabel(r"$x$", size=LABEL_SIZE)
     plt.ylabel(r"$\sigma(x)$", size=LABEL_SIZE)
+    plt.ylim(-1, 1.5)
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
     if SAVE_FIGS:
