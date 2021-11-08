@@ -118,8 +118,8 @@ if SHOW_PLOTS:
 
     for i, weight_init in enumerate(weight_inits):
         net = FFNN(struct, reg_param, weight_init=weight_init).fit(data, n_epochs, batch_size, lr)
-        plt.plot(net.hist["Train"], color=clrs[i], label=weight_init.capitalize())
-        plt.plot(net.hist["Test"], color=clrs[i], linestyle="dashed")
+        plt.semilogy(net.hist["Train"], color=clrs[i], label=weight_init.capitalize())
+        plt.semilogy(net.hist["Test"], color=clrs[i], linestyle="dashed")
 
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
