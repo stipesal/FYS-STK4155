@@ -35,10 +35,10 @@ data = x_train, x_test, y_train, y_test
 
 # ACTIVATION.
 activation_funcs = [
-    "sigmoid",
+    "Sigmoid",
     "tanh",
-    "relu",
-    "leaky_relu",
+    "ReLU",
+    "Leaky ReLU",
 ]
 
 if SHOW_PLOTS:
@@ -46,8 +46,8 @@ if SHOW_PLOTS:
     plt.axhline(y=0, color="k", ls="--")
     plt.axvline(x=0, color="k", ls="--")
     for func in activation_funcs:
-        f, _ = globals()[func]()
-        plt.plot(x, f(x), label=func.replace("_", " ").capitalize())
+        f, _ = globals()[func.replace(" ", "_").lower()]()
+        plt.plot(x, f(x), label=func)
     plt.xlabel(r"$x$", size=LABEL_SIZE)
     plt.ylabel(r"$\sigma(x)$", size=LABEL_SIZE)
     plt.ylim(-1, 1.5)
@@ -69,14 +69,16 @@ reg_param = 1e-3
 
 nets = []
 for func in activation_funcs:
-    nn = FFNN(struct, reg_param, activation=func).fit(data, n_epochs, batch_size, learning_rate)
+    nn = FFNN(
+        struct, reg_param, activation=func.replace(" ", "_").lower(),
+    ).fit(data, n_epochs, batch_size, learning_rate)
     nets.append(nn)
 
 if SHOW_PLOTS:
     colors = iter([f"C{i}" for i in range(len(nets))])
-    for net in nets:
+    for i, net in enumerate(nets):
         clr = next(colors)
-        plt.semilogy(net.hist["Train"], color=clr, label=net.activation.replace("_", " ").capitalize())
+        plt.semilogy(net.hist["Train"], color=clr, label=activation_funcs[i])
         plt.semilogy(net.hist["Test"], "--", color=clr)
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel("MSE", size=LABEL_SIZE)
