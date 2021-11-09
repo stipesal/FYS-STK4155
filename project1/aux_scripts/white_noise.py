@@ -52,6 +52,6 @@ plt.ylabel("MSE", size=LABEL_SIZE)
 plt.legend(fontsize=LEGEND_SIZE)
 plt.tight_layout()
 if not os.path.exists("project1/figs/"):
-    os.makedirs("figs/")
+    os.makedirs("project1/figs/")
 plt.savefig("project1/figs/white_noise.pdf", bbox_inches='tight', format="pdf")
 plt.show()

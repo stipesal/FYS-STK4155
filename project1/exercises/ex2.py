@@ -61,7 +61,7 @@ if SHOW_PLOTS:
     plt.tight_layout()
     if SAVE_FIGS:
         if not os.path.exists("project1/figs/"):
-            os.makedirs("figs/")
+            os.makedirs("project1/figs/")
         plt.savefig("project1/figs/mse_r2_franke.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
