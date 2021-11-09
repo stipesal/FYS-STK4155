@@ -6,43 +6,29 @@ import numpy as np
 from scipy.stats import t
 from sklearn.linear_model import Lasso as Lasso_
 
+from src.optimization import sgd
 from src.utils import mse, r2
 
 
-def sgd(data, n_epochs, batch_size, lr, reg=0.):
-    """Fits parameters using (mini-batch) stochastic gradient descent."""
-    X_train, X_test, y_train, y_test = data
-
-    n_batches = X_train.shape[0] // batch_size
-    idx = np.arange(X_train.shape[0])
-
-    beta = np.random.randn(X_train.shape[1])
-
-    f = lambda beta, X, y: ((X @ beta - y) ** 2).sum() / X.shape[0] + reg * (beta ** 2).sum()
-    df = lambda beta, X, y: 2 / X.shape[0] * X.T @ (X @ beta - y) + 2 * reg * beta
-
-    hist = {"Train": [], "Test": []}
-    for _ in range(n_epochs):
-        np.random.shuffle(idx)
-
-        for b in range(n_batches):
-            batch = idx[b * batch_size: (b + 1) * batch_size]
-            beta -= lr * df(beta, X_train[batch], y_train[batch])
-
-        hist["Train"].append(f(beta, X_train, y_train))
-        hist["Test"].append(f(beta, X_test, y_test))
-    return beta, hist
-
-
-class LinearRegression():
+class LinearRegression:
     """Base Linear Regression object with the basic methods."""
-    def __init__(self):
-        """Sets subclass-specific parameters."""
-        pass
+    def __init__(self, reg_param=0):
+        """Sets the regularization parameter for the penalty term."""
+        self.reg_param = reg_param
 
     def fit(self, X, y):
         """Fits the model given the data. See subclasses."""
         pass
+
+    def fit_sgd(self, data, n_epochs, batch_size, lr, verbose=False):
+        f = lambda beta, X, y: (
+            ((X @ beta - y) ** 2).sum() / X.shape[0] + self.reg_param * (beta ** 2).sum()
+        )
+        df = lambda beta, X, y: (
+            2 / X.shape[0] * X.T @ (X @ beta - y) + 2 * self.reg_param * beta
+        )
+        self.beta, self.hist = sgd(data, f, df, n_epochs, batch_size, lr, verbose=verbose)
+        return self
 
     def predict(self, X):
         """Returns the prediction for the given data."""
@@ -56,6 +42,10 @@ class LinearRegression():
 
 
 class OLS(LinearRegression):
+    def __init__(self, reg_param=0.):
+        """OLS uses no regularization."""
+        super().__init__(reg_param=reg_param)
+
     def fit(self, X, y, confidence=None):
         """
         Confidence should be in `(0, 1)`, e.g. 'confidence=0.95'
@@ -75,15 +65,11 @@ class OLS(LinearRegression):
 
         return self
 
-    def fit_sgd(self, data, n_epochs, batch_size, lr):
-        self.beta, self.hist = sgd(data, n_epochs, batch_size, lr)
-        return self
-
 
 class Ridge(LinearRegression):
     def __init__(self, reg_param):
-        """Sets the regularization parameter for the penalty term."""
-        self.reg_param = reg_param
+        """See base class."""
+        super().__init__(reg_param=reg_param)
 
     def fit(self, X, y):
         """See base class."""
@@ -96,10 +82,6 @@ class Ridge(LinearRegression):
         self.r2_train = r2(y, self.predict(X))
         return self
 
-    def fit_sgd(self, data, n_epochs, batch_size, lr):
-        self.beta, self.hist = sgd(data, n_epochs, batch_size, lr, self.reg_param)
-        return self
-
 
 class Lasso(LinearRegression):
     """Basically a wrapper of Scikit-Learn's Lasso."""
@@ -108,7 +90,7 @@ class Lasso(LinearRegression):
         Sets the regularization parameter for the penalty term,
         as well as Scikit-Learn's Lasso model.
         """
-        self.reg_param = reg_param
+        super().__init__(reg_param=reg_param)
         self.model = Lasso_(alpha=self.reg_param)
 
     def fit(self, X, y):
