@@ -9,7 +9,8 @@ from sklearn.linear_model import Lasso as Lasso_
 from src.utils import mse, r2
 
 
-def sgd(data, n_epochs=100, batch_size=32, lr=1e-3, reg=0.):
+def sgd(data, n_epochs, batch_size, lr, reg):
+    """Fits parameters using (mini-batch) stochastic gradient descent."""
     X_train, X_test, y_train, y_test = data
 
     n_batches = X_train.shape[0] // batch_size

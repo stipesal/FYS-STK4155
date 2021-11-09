@@ -13,6 +13,7 @@ sigmoid, _ = sigmoid()
 
 
 def sgd(data, n_epochs, batch_size, lr, reg):
+    """Fits parameters using (mini-batch) stochastic gradient descent."""
     X_train, X_test, y_train, y_test = data
 
     n_batches = X_train.shape[0] // batch_size
@@ -43,13 +44,17 @@ def sgd(data, n_epochs, batch_size, lr, reg):
 
 
 class LogisticRegression:
+    """Logistic Regression object for binary classification."""
     def fit(self, data, n_epochs, batch_size, lr, reg):
+        """Fits the model given the data using SGD."""
         self.beta, self.hist = sgd(data, n_epochs, batch_size, lr, reg)
         return self
 
     def predict(self, X):
+        """Returns the prediction for the given data."""
         return X @ self.beta > 0
 
     def score(self, X, y):
+        """Stores the accuracy for the given data."""
         self.acc_test = acc(self.predict(X), y)
         return self.acc_test
