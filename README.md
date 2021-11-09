@@ -18,6 +18,7 @@ The solutions to the exercises can be found in the `project*/` folders, whereas 
 - `neural_network.py` - Object-oriented implementation of feedforward neural networks for both, regression and classification problems.
 - `activations.py` - A few common activation functions such as *(leaky) ReLU*, *sigmoid*, and *tanh*.
 - `weight_inits.py` - *Xavier* and *Kaiming* weight matrix initialization.
+- `optimization.py` - (Mini-batch) stochastic gradient descent.
 - `franke.py` - Evaluation, sampling, and plotting the so-called Franke's function. [^1]
 - `utils.py` - Utility functions such as polynomial features, bias-variance analysis, resampling techniques, and metrics.
 
