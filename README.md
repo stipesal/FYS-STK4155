@@ -6,7 +6,7 @@ Project work on [FYS-STK4155](https://www.uio.no/studier/emner/matnat/fys/FYS-ST
 ## Progress
 
 - [x] [Project 1](https://github.com/stipesal/FYS-STK4155/tree/master/project1) - Regression analysis and resampling methods
-- [ ] [Project 2](https://github.com/stipesal/FYS-STK4155/tree/master/project2) - From linear and logistic regression to neural networks
+- [x] [Project 2](https://github.com/stipesal/FYS-STK4155/tree/master/project2) - From linear and logistic regression to neural networks
 - [ ] Project 3
 
 ## Code structure
