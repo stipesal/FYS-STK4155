@@ -26,7 +26,7 @@ def x_space():
 
 
 @pytest.mark.parametrize("activation", activations)
-def test_eval(activation, x_space):
+def test_monoton_increasing(activation, x_space):
     """
     Tests if all activation functions
     are monotonically increasing.
