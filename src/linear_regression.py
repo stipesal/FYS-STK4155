@@ -21,6 +21,7 @@ class LinearRegression:
         pass
 
     def fit_sgd(self, data, n_epochs, batch_size, lr, verbose=False):
+        """Fits the model given the data using stochastic gradient descent."""
         f = lambda beta, X, y: (
             ((X @ beta - y) ** 2).sum() / X.shape[0] + self.reg_param * (beta ** 2).sum()
         )
