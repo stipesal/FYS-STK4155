@@ -1,5 +1,3 @@
 # From linear and logistic regression to neural networks
 
-## Abstract
-
 Using (mini-batch) stochastic gradient descent, we compare iterative linear regression methods with fully connected feedforward neural networks and perform hyperparameter tuning of all relevant variables. Closed-form solutions for OLS and ridge regression are the best performing ones, also in terms of computation time. Activation functions, weight matrix intializations, and network architecture have a very strong impact on a feedforward neural networks performance. The results show that highly optimized implementations of logistic regression outperform neural networks on relatively simple classification tasks. We support our results using experiments on Franke's function as well as datasets on breast cancer, digits and fashion MNIST.
