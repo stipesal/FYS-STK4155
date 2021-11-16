@@ -50,7 +50,7 @@ def bias_variance_analysis(model, X_train, X_test, y_train, y_test, n_bootstraps
     for i in range(n_bootstraps):
         x_, y_ = resample(X_train, y_train)
         y_pred[i] = model.fit(x_, y_).predict(X_test)
-    
+
     error = np.mean((y_pred - y_test) ** 2)
     bias = np.mean((y_test - np.mean(y_pred, axis=0)) ** 2)
     var = np.mean(np.var(y_pred, axis=0))
