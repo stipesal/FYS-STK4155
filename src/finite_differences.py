@@ -53,3 +53,26 @@ class FivePoint(FDM):
         self.sol[:, 0] = u0
         for n in range(N):
             self.sol[:, n + 1] = L.solve(M.dot(self.sol[:, n]))
+
+
+class ThreePoint(FDM):
+    def solve(self, c: float, u0: np.ndarray, space: np.ndarray, time: np.ndarray):
+        self.set_grids(space, time)
+        J, N = self.J, self.N
+
+        alpha = c * self.dt / self.dx
+
+        B = diags(self.coeffs, [-1, 0, 1], shape=(J+2, J+2), format="lil")
+        B[0, -1] = self.coeffs[0]
+        B[-1, 0] = self.coeffs[2]
+
+        L = eye(J + 2) + alpha * (1 - self.imex) * B
+        M = eye(J + 2) - alpha * self.imex * B
+
+        # LU decomposition of left-hand side L.
+        L = splu(L.tocsc())
+
+        self.sol = np.zeros((J+2, N+1))
+        self.sol[:, 0] = u0
+        for n in range(N):
+            self.sol[:, n + 1] = L.solve(M.dot(self.sol[:, n]))
