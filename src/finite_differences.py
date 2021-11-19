@@ -27,13 +27,12 @@ class FDM:
         self.dx = space[1] - space[0]
         self.dt = time[1] - time[0]
     
-    def plot_solution(self):
+    def plot_solution(self, ax):
         ext = [self.time.min(), self.time.max(), self.space.min(), self.space.max()]
-        plt.imshow(self.sol, extent=ext, aspect="auto", origin="lower", cmap="coolwarm")
-        plt.xlabel(r"$t$", size=LABEL_SIZE)
-        plt.ylabel(r"$x$", size=LABEL_SIZE)
-        plt.colorbar()
-        plt.show()
+        im = ax.imshow(self.sol, extent=ext, aspect="auto", origin="lower", cmap="coolwarm")
+        ax.set_xlabel(r"$t$", size=LABEL_SIZE)
+        ax.set_ylabel(r"$x$", size=LABEL_SIZE)
+        return im
 
 
 class FivePoint(FDM):
