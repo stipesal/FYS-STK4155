@@ -9,13 +9,13 @@ import pytest
 from src.finite_differences import ThreePoint, FivePoint
 
 
-SHOW_PLOTS = True
+SHOW_PLOTS = False
 
 
 @pytest.fixture(scope='session')
 def c():
     """Returns the diffusion coefficent in the heat equation."""
-    return .3
+    return .5
 
 
 @pytest.fixture(scope="session")
@@ -45,6 +45,8 @@ def solver_heat(c, u0, space, time):
     RF.solve(c, u0(space), space, time)
     if SHOW_PLOTS:
         RF.plot_solution()
+        plt.title("Solution of the heat equation")
+        plt.show()
     return RF
 
 
@@ -59,7 +61,15 @@ def solver_adv(c, u0, space, time):
     RF.solve(c, u0(space), space, time)
     if SHOW_PLOTS:
         RF.plot_solution()
+        plt.title("Solution of the advection equation")
+        plt.show()
     return RF
+
+
+def test_heat_eq_solution(solver_heat, space, time):
+    x, t = np.meshgrid(space, time)
+    exact_sol = np.exp(-2 * np.pi * t.T) * np.sin(np.pi * x.T)
+    assert np.allclose(solver_heat.sol, exact_sol, atol=1e-1)
 
 
 def test_heat_eq_inital_condition(solver_heat, u0):
