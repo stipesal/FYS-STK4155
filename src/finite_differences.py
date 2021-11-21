@@ -5,6 +5,7 @@ Finite differences.
 import matplotlib.pyplot as plt
 import numpy as np
 
+from matplotlib.axes import Axes
 from scipy.sparse import diags, eye
 from scipy.sparse.linalg import splu
 from typing import List, Optional, Tuple
@@ -27,19 +28,15 @@ class FDM:
         self.dx = space[1] - space[0]
         self.dt = time[1] - time[0]
     
-    def plot_solution(self, ax=None):
-        ext = [self.time.min(), self.time.max(), self.space.min(), self.space.max()]
+    def plot_solution(self, ax: Optional[Axes] = None):
         if ax is None:
-            plt.imshow(self.sol, extent=ext, aspect="auto", origin="lower", cmap="coolwarm")
-            plt.xlabel(r"$t$", size=LABEL_SIZE)
-            plt.ylabel(r"$x$", size=LABEL_SIZE)
-            plt.colorbar()
-            plt.show()
-        else:
-            im = ax.imshow(self.sol, extent=ext, aspect="auto", origin="lower", cmap="coolwarm")
-            ax.set_xlabel(r"$t$", size=LABEL_SIZE)
-            ax.set_ylabel(r"$x$", size=LABEL_SIZE)
-            return im
+            _, ax = plt.subplots()
+        ext = [self.time.min(), self.time.max(), self.space.min(), self.space.max()]
+
+        im = ax.imshow(self.sol, extent=ext, aspect="auto", origin="lower", cmap="coolwarm")
+        ax.set_xlabel(r"$t$", size=LABEL_SIZE)
+        ax.set_ylabel(r"$x$", size=LABEL_SIZE)
+        return im
 
 
 class FivePoint(FDM):
