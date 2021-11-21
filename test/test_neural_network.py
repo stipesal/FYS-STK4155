@@ -1,6 +1,6 @@
 """
 FYS-STK4155 @UiO
-Testing: Neural Network.
+Testing: Neural network.
 """
 import pytest
 import numpy as np
@@ -14,7 +14,7 @@ from src.neural_network import FFNN
 np.random.seed(2021)
 
 N_SAMPLES = 1000
-N_FEAUTURES = 10
+N_FEATURES = 10
 
 
 @pytest.fixture(scope="session")
@@ -22,7 +22,7 @@ def regression_data():
     """Regression dummy data."""
     X, y = make_regression(
         n_samples=N_SAMPLES,
-        n_features=N_FEAUTURES,
+        n_features=N_FEATURES,
     )
     return train_test_split(X, y, test_size=.2)
 
@@ -32,7 +32,7 @@ def classification_data():
     """Classification dummy data."""
     X, y = make_classification(
         n_samples=N_SAMPLES,
-        n_features=N_FEAUTURES,
+        n_features=N_FEATURES,
     )
     return train_test_split(X, y, test_size=.2)
 
@@ -44,7 +44,7 @@ def test_init(classification_data):
     """
     reg_param = 1.
 
-    p = [N_FEAUTURES, 50, 10, 2]   # Network architecture.
+    p = [N_FEATURES, 50, 10, 2]   # Network architecture.
     L = len(p) - 2   # Number of hidden layers.
 
     nn = FFNN(p, reg_param)
@@ -67,7 +67,7 @@ def test_train(regression_data):
     Tests the training procedure of the neural network
     by checking if the loss is dropping with time.
     """
-    p = [N_FEAUTURES, 10, 1]
+    p = [N_FEATURES, 10, 1]
     reg_param = 1e-3
     lr = 1e-3
     n_epochs = 100
