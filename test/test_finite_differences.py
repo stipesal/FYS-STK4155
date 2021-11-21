@@ -15,7 +15,7 @@ SHOW_PLOTS = False
 @pytest.fixture(scope='session')
 def c():
     """Returns the diffusion coefficent in the heat equation."""
-    return .5
+    return 1.
 
 
 @pytest.fixture(scope="session")
@@ -68,8 +68,8 @@ def solver_adv(c, u0, space, time):
 
 def test_heat_eq_solution(solver_heat, space, time):
     x, t = np.meshgrid(space, time)
-    exact_sol = np.exp(-2 * np.pi * t.T) * np.sin(np.pi * x.T)
-    assert np.allclose(solver_heat.sol, exact_sol, atol=1e-1)
+    exact_sol = np.exp(-np.pi ** 2 * t.T) * np.sin(np.pi * x.T)
+    assert np.allclose(solver_heat.sol, exact_sol, atol=1e-2)
 
 
 def test_heat_eq_inital_condition(solver_heat, u0):
