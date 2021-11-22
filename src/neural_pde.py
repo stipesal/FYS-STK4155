@@ -80,18 +80,24 @@ class PDE_Net(ANN):
         t_test = (self.T * torch.rand(N_TEST, 1)).requires_grad_(True)
         return (x_train, t_train), (x_test, t_test)
 
+    def predict(self, space: np.ndarray, time: np.ndarray) -> np.ndarray:
+        J, N = space.size, time.size
+        space, time = torch.meshgrid(torch.Tensor(space), torch.Tensor(time), indexing="ij")
+        pred = self(space.reshape(-1, 1), time.reshape(-1, 1)).detach().reshape((J, N))
+        self.sol = pred
+        return pred
+
     def plot_solution(self, ax: Optional[Axes] = None) -> AxesImage:
         if ax is None:
             _, ax = plt.subplots()
         n = 100
-        space = torch.linspace(*self.space, n)
-        time = torch.linspace(0, self.T, n)
+        space = np.linspace(*self.space, n)
+        time = np.linspace(0, self.T, n)
 
-        space_, time_ = torch.meshgrid(space, time, indexing="ij")
+        pred = self.predict(space, time)
         ext = [time.min(), time.max(), space.min(), space.max()]
 
-        pred = self(space_.reshape(-1, 1), time_.reshape(-1, 1)).detach()
-        im = ax.imshow(pred.reshape(n, n), extent=ext, aspect="auto", origin="lower", cmap="coolwarm")
+        im = ax.imshow(pred, extent=ext, aspect="auto", origin="lower", cmap="coolwarm")
         ax.set_xlabel(r"$t$", size=LABEL_SIZE)
         ax.set_ylabel(r"$x$", size=LABEL_SIZE)
         return im
