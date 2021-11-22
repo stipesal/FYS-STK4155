@@ -108,7 +108,7 @@ def test_eigen_net(A, eigen_net):
     """
     rayleigh_quotient = lambda x: (x.T @ A @ x) / (x.T @ x)
 
-    T = 5
+    T = 1
     pred_eigen_vec = eigen_net(torch.Tensor([T])).detach().numpy()
     pred_max_eigen_val = rayleigh_quotient(pred_eigen_vec)
 

@@ -171,6 +171,7 @@ class AdvectionNet(PDE_Net):
 class EigenNet(ANN):
     def __init__(self, units: List[int], activation: Callable):
         super().__init__(units, activation)
+        self.eig_vec_hist = []
 
     def set_problem(self, A: np.ndarray) -> EigenNet:
         self.A = torch.tensor(A).float()
@@ -181,7 +182,7 @@ class EigenNet(ANN):
         return self.layers(t)
 
     def sample_data(self) -> Tuple[Tuple[Tensor], Tuple[Tensor]]:
-        T = 5
+        T = 1
         t_train = (T * torch.rand(N, 1)).requires_grad_(True)
         t_test = (T * torch.rand(N_TEST, 1)).requires_grad_(True)
         return (t_train,), (t_test,)
@@ -201,5 +202,7 @@ class EigenNet(ANN):
 
         # Initial condition.
         init_loss = torch.mean((self(torch.zeros(1).reshape(-1, 1)) - torch.ones(self.n)) ** 2)
+
+        self.eig_vec_hist.append(self(torch.Tensor([1])))
 
         return physics_loss + init_loss
