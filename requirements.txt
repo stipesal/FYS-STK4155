@@ -5,4 +5,5 @@ numpy
 pytest
 scikit_learn
 scipy
+torch
 tqdm
