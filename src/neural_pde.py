@@ -32,8 +32,8 @@ class ANN(nn.Module):
     def train(self, n_epochs: int, batch_size: int, lr: float) -> ANN:
         train_data, test_data = self.sample_data()
 
-        n_batches = train_data[0].size(dim=0) // batch_size
-        idx = np.arange(train_data[0].size(dim=0))
+        n_batches = N // batch_size
+        idx = np.arange(N)
 
         optimizer = torch.optim.Adam(self.parameters(), lr=lr)
 

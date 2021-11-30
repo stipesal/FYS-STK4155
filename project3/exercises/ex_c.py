@@ -85,3 +85,29 @@ if SHOW_PLOTS:
         cbar.formatter.set_powerlimits((0, 0))
     plt.tight_layout()
     plt.show()
+
+    # 3D prediction. PDENet.
+    X, T = np.meshgrid(space, time)
+    ax = plt.axes(projection='3d')
+    ax.plot_surface(X.T, T.T, pde_net.sol.numpy(), alpha=.9, cmap="coolwarm")
+    ax.set_xlabel(r"$x$", size=LABEL_SIZE)
+    ax.set_ylabel(r"$t$", size=LABEL_SIZE)
+    ax.set_zlabel(r"$u(x,t)$", size=LABEL_SIZE, rotation=90)
+    ax.view_init(elev=20., azim=40)
+    ax.zaxis.set_rotate_label(False)
+    plt.tight_layout()
+    plt.show()
+
+    # 2D. PDENet vs. exact at different time points.
+    time_points = [.0, .1, .2, .3]
+    idx = [np.argmin(np.abs(time - t)) for t in time_points]
+    color=plt.cm.coolwarm(np.linspace(0, 1, len(time_points)))[::-1]
+    for i, (ix, t) in enumerate(zip(idx, time_points)):
+        plt.plot(space, pde_net.sol[:, ix], c=color[i], label=rf"$t={t:.1f}$")
+        plt.plot(space, exact_sol[:, ix], "k--", alpha=.8)
+    plt.plot([], [], "k--", label="exact")
+    plt.xlabel(r"$x$", size=LABEL_SIZE)
+    plt.ylabel(r"$u(x, t)$", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE)
+    plt.tight_layout()
+    plt.show()

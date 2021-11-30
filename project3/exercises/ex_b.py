@@ -50,6 +50,7 @@ if SHOW_PLOTS:
     plt.xlabel(r"$x$", size=LABEL_SIZE)
     plt.ylabel(r"$u(x, t)$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
+    plt.tight_layout()
     plt.show()
 
 

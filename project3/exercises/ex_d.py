@@ -12,7 +12,7 @@ from scipy.linalg import eig
 from torch import nn
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-from src.neural_pde import EigenNet
+from src.neural_pde import EigenNet, N
 from src.utils import LABEL_SIZE, LEGEND_SIZE
 
 
@@ -41,8 +41,8 @@ units = [1, 50, 50, A.shape[0]]
 activation=nn.Tanh
 eigen_net = EigenNet(units, activation).set_problem(A)
 
-n_epochs = 100
-batch_size = 1000
+n_epochs = 20
+batch_size = 128
 lr = 1e-3
 eigen_net.train(n_epochs, batch_size, lr)
 
@@ -55,9 +55,10 @@ print(f"True largest eigenvalue: {true_max_eigen_val:.4f}")
 print(f"Predicted largest eigenvalue: {pred_max_eigen_val:.4f}")
 
 if SHOW_PLOTS:
-    hist_ = np.stack([x.detach() for x in eigen_net.eig_vec_hist[::3]])
-    plt.plot(hist_)
-    plt.hlines(c * max_eigen_vec, 0, n_epochs, color="k", linestyles="dashed", lw=1., label="true eigenvector")
+    skip = N // batch_size + 2
+    hist_ = np.stack([x.detach() for x in eigen_net.eig_vec_hist[::skip]])
+    plt.plot(np.arange(1, n_epochs + 1), hist_)
+    plt.hlines(c * max_eigen_vec, 1, n_epochs, color="k", linestyles="dashed", lw=1., label="true eigenvector")
     plt.xlabel("epoch", size=LABEL_SIZE)
     plt.ylabel(r"$N(T)$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE, loc="lower right")
