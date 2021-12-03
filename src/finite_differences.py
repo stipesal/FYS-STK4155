@@ -64,14 +64,14 @@ class ThreePoint(FDM):
         self.set_grids(space, time)
         J, N = self.J, self.N
 
-        alpha = c * self.dt / self.dx
+        self.alpha = c * self.dt / self.dx
 
         B = diags(self.coeffs, [-1, 0, 1], shape=(J+2, J+2), format="lil")
         B[0, -1] = self.coeffs[0]
         B[-1, 0] = self.coeffs[2]
 
-        L = eye(J + 2) + alpha * (1 - self.imex) * B
-        M = eye(J + 2) - alpha * self.imex * B
+        L = eye(J + 2) + self.alpha * (1 - self.imex) * B
+        M = eye(J + 2) - self.alpha * self.imex * B
 
         # LU decomposition of left-hand side L.
         L = splu(L.tocsc())
