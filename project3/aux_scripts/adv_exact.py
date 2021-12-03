@@ -39,7 +39,10 @@ X, T = np.meshgrid(space, time)
 c = 0.5
 fdm.solve(c, u0(space), space, time)
 ax = plot_3d()
-ax.plot_surface(X.T, T.T, fdm.sol, alpha=.9, cmap="jet")
+ax.plot_surface(X.T, T.T, fdm.sol, alpha=.8, cmap="jet")
+ax.plot_wireframe(
+    space.reshape(-1, 1), np.zeros(space.size).reshape(-1, 1), u0(space).reshape(-1, 1), color="k", lw=2.5,
+)
 plt.tight_layout()
 if not os.path.exists("project3/figs/"):
     os.makedirs("project3/figs/")
@@ -49,7 +52,10 @@ plt.show()
 c = 2.0
 fdm.solve(c, u0(space), space, time)
 ax = plot_3d()
-ax.plot_surface(X.T, T.T, fdm.sol, alpha=.9, cmap="jet")
+ax.plot_surface(X.T, T.T, fdm.sol, alpha=.8, cmap="jet")
+ax.plot_wireframe(
+    space.reshape(-1, 1), np.zeros(space.size).reshape(-1, 1), u0(space).reshape(-1, 1), color="k", lw=2.5,
+)
 plt.tight_layout()
 if not os.path.exists("project3/figs/"):
     os.makedirs("project3/figs/")

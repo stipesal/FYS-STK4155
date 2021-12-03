@@ -34,6 +34,9 @@ exact_sol_ = lambda c: np.exp(-c * np.pi ** 2 * T.T) * np.sin(np.pi * X.T)
 exact_sol = exact_sol_(c=0.2)
 ax = plot_3d()
 ax.plot_surface(X.T, T.T, exact_sol, alpha=.9, cmap="coolwarm")
+ax.plot_wireframe(
+    space.reshape(-1, 1), np.zeros(space.size).reshape(-1, 1), u0(space).reshape(-1, 1), color="k", lw=2.5,
+)
 plt.tight_layout()
 if not os.path.exists("project3/figs/"):
     os.makedirs("project3/figs/")
@@ -43,6 +46,9 @@ plt.show()
 exact_sol = exact_sol_(c=1.0)
 ax = plot_3d()
 ax.plot_surface(X.T, T.T, exact_sol, alpha=.9, cmap="coolwarm")
+ax.plot_wireframe(
+    space.reshape(-1, 1), np.zeros(space.size).reshape(-1, 1), u0(space).reshape(-1, 1), color="k", lw=2.5,
+)
 plt.tight_layout()
 if not os.path.exists("project3/figs/"):
     os.makedirs("project3/figs/")
