@@ -26,7 +26,7 @@ time = np.linspace(0, .5, N + 1)
 u0 = lambda x: np.where((0.3 < x) & (x < 0.6), 1, 0)
 
 
-# FDM. Implicit Euler + 2. order central
+# FDM. Implicit Euler + 1. order upwind.
 fdm = ThreePoint((0, [-1, 1, 0]))
 exact_sol_ = lambda c: fdm.solve(c, u0(space), space, time)
 
