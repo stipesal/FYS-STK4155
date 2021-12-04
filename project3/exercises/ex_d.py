@@ -20,6 +20,7 @@ np.random.seed(2021)
 torch.manual_seed(2021)
 
 SHOW_PLOTS = True
+SAVE_FIGS = True
 
 
 # DATA. Symmetric matrix A. Rayleigh quotient.
@@ -38,7 +39,7 @@ max_eigen_vec = eigen_vecs[:, idx]
 
 # EigenNet.
 units = [1, 50, 50, A.shape[0]]
-activation=nn.Tanh
+activation = nn.Tanh
 eigen_net = EigenNet(units, activation).set_problem(A)
 
 n_epochs = 20
@@ -60,16 +61,22 @@ if SHOW_PLOTS:
     plt.plot(np.arange(1, n_epochs + 1), hist_)
     plt.hlines(c * max_eigen_vec, 1, n_epochs, color="k", linestyles="dashed", lw=1., label="true eigenvector")
     plt.xlabel("epoch", size=LABEL_SIZE)
-    plt.ylabel(r"$N(T)$", size=LABEL_SIZE)
-    plt.legend(fontsize=LEGEND_SIZE, loc="lower right")
+    plt.ylabel(r"$g(T)$", size=LABEL_SIZE)
+    plt.legend(fontsize=LEGEND_SIZE, loc="right")
     plt.tight_layout()
+    if SAVE_FIGS:
+        if not os.path.exists("project3/figs/"):
+            os.makedirs("project3/figs/")
+        plt.savefig("project3/figs/eigen_approx.pdf", bbox_inches='tight', format="pdf")
     plt.show()
 
 if SHOW_PLOTS:
     plt.plot(eigen_net.hist["Train"], label="train")
     plt.plot(eigen_net.hist["Test"], label="test")
     plt.xlabel("epoch", size=LABEL_SIZE)
-    plt.ylabel("loss", size=LABEL_SIZE)
+    plt.ylabel(r"$L(\theta)$", size=LABEL_SIZE)
     plt.legend(fontsize=LEGEND_SIZE)
     plt.tight_layout()
+    if SAVE_FIGS:
+        plt.savefig("project3/figs/eigen_loss.pdf", bbox_inches='tight', format="pdf")
     plt.show()
