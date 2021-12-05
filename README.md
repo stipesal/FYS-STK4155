@@ -7,7 +7,7 @@ Project work on [FYS-STK4155](https://www.uio.no/studier/emner/matnat/fys/FYS-ST
 
 - [x] [Project 1](https://github.com/stipesal/FYS-STK4155/tree/master/project1) - Regression analysis and resampling methods
 - [x] [Project 2](https://github.com/stipesal/FYS-STK4155/tree/master/project2) - From linear and logistic regression to neural networks
-- [ ] [Project 3](https://github.com/stipesal/FYS-STK4155/tree/master/project3) - Solving partial differential equations with neural networks
+- [x] [Project 3](https://github.com/stipesal/FYS-STK4155/tree/master/project3) - Solving partial differential equations with neural networks
 
 ## Code structure
 
