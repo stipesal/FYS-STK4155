@@ -16,6 +16,8 @@ The solutions to the exercises can be found in the `project*/` folders, whereas 
 - `linear_regression.py` - An abstract base class `LinearRegression` provides the foundations for the three slightly more specific models `OLS`, `Ridge`, and `Lasso`.
 - `logistic_regression.py` - Simple logistic regression model trainable with (mini-batch) stochastic gradient descent.
 - `neural_network.py` - Object-oriented implementation of feedforward neural networks for both, regression and classification problems.
+- `neural_pde.py` - Implementation of `PDENet` and `EigenNet` for solving partial differential equations and eigenvalue problems.
+- `finite_differences.py` - Parametrized central and upwind finite difference schemes for solving the heat and linear advection equation.
 - `activations.py` - A few common activation functions such as *(leaky) ReLU*, *sigmoid*, and *tanh*.
 - `weight_inits.py` - *Xavier* and *Kaiming* weight matrix initialization.
 - `optimization.py` - (Mini-batch) stochastic gradient descent.
