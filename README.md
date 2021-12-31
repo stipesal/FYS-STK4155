@@ -11,22 +11,15 @@ Project work on [FYS-STK4155](https://www.uio.no/studier/emner/matnat/fys/FYS-ST
 
 ## Code structure
 
-The solutions to the exercises can be found in the `project*/` folders, whereas the main functions are located in `src/`, including
+The solutions to the exercises can be found in the `project*/` folders, whereas the main functions are located in `src/`, including among others
 
-- `linear_regression.py` - An abstract base class `LinearRegression` provides the foundations for the three slightly more specific models `OLS`, `Ridge`, and `Lasso`.
-- `logistic_regression.py` - Simple logistic regression model trainable with (mini-batch) stochastic gradient descent.
-- `neural_network.py` - Object-oriented implementation of feedforward neural networks for both, regression and classification problems.
-- `neural_pde.py` - Implementation of `PDENet` and `EigenNet` for solving partial differential equations and eigenvalue problems.
-- `finite_differences.py` - Parametrized central and upwind finite difference schemes for solving the heat and linear advection equation.
-- `activations.py` - A few common activation functions such as *(leaky) ReLU*, *sigmoid*, and *tanh*.
-- `weight_inits.py` - *Xavier* and *Kaiming* weight matrix initialization.
-- `optimization.py` - (Mini-batch) stochastic gradient descent.
-- `franke.py` - Evaluation, sampling, and plotting the so-called Franke's function. [^1]
-- `utils.py` - Utility functions such as polynomial features, bias-variance analysis, resampling techniques, and metrics.
+- [Linear regression](src/linear_regression.py) - An abstract base class `LinearRegression` provides the foundations for the three slightly more specific models `OLS`, `Ridge`, and `Lasso`.
+- [Logistic regression](src/logistic_regression.py) - Simple logistic regression model trainable with (mini-batch) stochastic gradient descent.
+- [Neural Networks](src/neural_network.py) - Object-oriented implementation of feedforward neural networks for both, regression and classification problems.
+- [Neural PDE](src/neural_pde.py) - Implementation of `PDENet` and `EigenNet` for solving partial differential equations and eigenvalue problems.
+- [Finite differences](src/finite_differences.py) - Parametrized central and upwind finite difference schemes for solving the heat and linear advection equation.
 
 Project-specific `aux_scripts/` contain scripts for creating additional figures for the reports. Tests for the main functions in `src/` are implemented in `test/`.
-
-[^1]: https://www.sfu.ca/~ssurjano/franke2d.html
 
 ## Reproduction
 
