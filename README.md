@@ -1,4 +1,4 @@
-# FYS-STK4155
+# Machine learning
 
 Project work on [FYS-STK4155](https://www.uio.no/studier/emner/matnat/fys/FYS-STK4155/index-eng.html) - **Applied data analysis and machine learning** @University of Oslo.
 
@@ -33,9 +33,9 @@ Project-specific `aux_scripts/` contain scripts for creating additional figures 
 To play around with the programmes yourself, please clone the repository
 
 ```
-git clone https://github.com/stipesal/FYS-STK4155
+git clone https://github.com/stipesal/Machine-Learning
 ```
-and navigate to `cd FYS-STK4155/`. Create a virtual environment via `python3 -m venv .venv`, activate it `source .venv/bin/activate`, and install the requirements using
+and navigate to `cd Machine-Learning/`. Create a virtual environment via `python3 -m venv .venv`, activate it `source .venv/bin/activate`, and install the requirements using
 ```
 python3 -m pip install -r requirements.txt
 ```
